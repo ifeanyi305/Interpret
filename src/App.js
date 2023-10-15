@@ -1,19 +1,17 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Homepage from './pages/home/Homepage';
+import Signin from './components/auth/Signin';
+import Signup from './components/auth/Signup';
 
 function App() {
   return (
     <div className="App">
-        <p className="text-3xl font-bold underline">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="text-3xl font-bold underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/auth/signin" element={<Signin />} />
+        <Route path="/auth/signup" element={<Signup />} />
+      </Routes>
     </div>
   );
 }
