@@ -11,7 +11,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-[#373564] px-6 fixed w-full top-0">
+    <nav className="bg-[#373564] navbar px-6 fixed w-full top-0">
       <div className="flex py-4 items-center justify-between gap-4">
         <div className="">
           <img src={Annovate} alt="annovate logo" />
