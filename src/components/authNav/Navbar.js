@@ -12,8 +12,8 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#373564] navbar px-6 fixed w-full top-0">
-      <div className="flex py-4 items-center justify-between gap-4">
-        <div className="">
+      <div className="flex py-[4px] items-center justify-between gap-4">
+        <div className="pt-2">
           <img src={Annovate} alt="annovate logo" />
         </div>
         <ul className="flex items-center nav_lists text-[14px] font-[500] text-white">

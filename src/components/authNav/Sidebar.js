@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar';
 import { FiExternalLink } from "react-icons/fi";
 
 const Sidebar = () => {
@@ -17,7 +16,6 @@ const Sidebar = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="px-[4%] bg-[#373564] md:w-[23%] h-full fixed overflow-y-auto scrollbar">
         <div className="mb-4 pt-[80px]">
           <p className="text-[#fff] mb-[15px] text-[15px] font-[700]">Recent Projects</p>

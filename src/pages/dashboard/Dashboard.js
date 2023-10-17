@@ -1,6 +1,8 @@
 import React from 'react';
 import "./styles/dashboard.css";
-import Sidebar from '../../components/authNav/Sidebar';
+import Nav from '../../components/authNav/Nav';
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const style = {
@@ -8,7 +10,7 @@ const Dashboard = () => {
   }
   return (
     <div className="flex">
-      <Sidebar />
+      <Nav />
       <div className="md:ml-[23%] px-6">
         <div className="px-6">
           <div className="bg-[#fff] shadow w-full mt-[14%] rounded-[8px] border-[0.3px] border-[#0000004d]">
@@ -28,13 +30,15 @@ const Dashboard = () => {
           <hr />
         </div>
         <div className="mb-6 flex justify-center items-center">
-          <button
-            type="button"
-            className="text-[#fff] bg-[#f10191d9] py-[3px] px-4 rounded-[20px]"
-          ><span>+</span> Create new project</button>
+          <Link to="/dashboard/create_project">
+            <button
+              type="button"
+              className="text-[#fff] bg-[#f10191d9] py-[3px] px-4 rounded-[20px]"
+            ><span>+</span> Create new project</button>
+          </Link>
         </div>
         <div>
-          <div className="shadow border-[#0000004d] border-[0.3px] bg-white w-full px-4 py-2 rounded-[8px] flex justify-between items-center">
+          <div className="shadow cursor-pointer project border-[#0000004d] border-[0.3px] bg-white w-full px-4 py-2 rounded-[8px] flex justify-between items-center">
             <div>
               <p className="text-[15px] text-[#252525a6] font-[600]">Hello 1</p>
               <p className={style.projectObjects}>object Detection</p>
@@ -43,8 +47,9 @@ const Dashboard = () => {
                 <small className={style.projectObjects}>200 images</small>
               </div>
             </div>
-            <div>
+            <div className="flex gap-4 items-center">
               <p className={style.projectObjects}>Edit 2 hours ago</p>
+              <FaArrowRight className="text-[#f10191d9] text-[22px]" />
             </div>
           </div>
         </div>
