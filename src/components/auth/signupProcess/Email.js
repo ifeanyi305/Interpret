@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { verifyEmail } from '../../../redux/auth/verifyEmail';
 import { BiSolidUser } from "react-icons/bi";
 
 const Email = ({ setNumber }) => {
   const [signupModal, setSignupModal] = useState(false)
   const [email, setEmail] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setEmail(e.target.value);
@@ -24,9 +27,20 @@ const Email = ({ setNumber }) => {
     border: `1px solid ${isFocused ? '#F10191' : '#fff'}`,
   };
 
-  const verifyEmail = () => {
+  const verifyEmailAddress = (e) => {
+    e.preventDefault();
+    const data = {
+      email: email,
+    }
+    dispatch(verifyEmail(data)).then((res) => {
+      if (res.error) {
+        console.log('error', res);
+      } else {
+        console.log('success', res);
+      }
+    })
+    setEmail("");
     setSignupModal(!signupModal)
-    // setNumber(1)
   }
 
   return (
@@ -37,24 +51,26 @@ const Email = ({ setNumber }) => {
           <p className="text-[#fff] text-center">Hey there!</p>
           <p className="text-[#fff] text-center">Create an account with us</p>
         </div>
-        <div
-          className="mb-4 flex items-center gap-2 bg-[#000] py-2 px-6 text-[#fff] rounded-[20px]"
-          style={containerStyle}
-        >
-          <BiSolidUser className="text-[#F10191]" />
-          <input
-            placeholder="E-mail"
-            className="bg-transparent w-full border-none focus:outline-none"
-            value={email}
-            onChange={handleInputChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          />
-        </div>
-        <button
-          onClick={verifyEmail}
-          className="bg-[#F10191] w-full py-2 px-6 text-[#fff] rounded-[20px]"
-        >Verify Email Address</button>
+        <form onSubmit={verifyEmailAddress}>
+          <div
+            className="mb-4 flex items-center gap-2 bg-[#000] py-2 px-6 text-[#fff] rounded-[20px]"
+            style={containerStyle}
+          >
+            <BiSolidUser className="text-[#F10191]" />
+            <input
+              placeholder="E-mail"
+              className="bg-transparent w-full border-none focus:outline-none"
+              value={email}
+              onChange={handleInputChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </div>
+          <button
+            onClick={verifyEmailAddress}
+            className="bg-[#F10191] w-full py-2 px-6 text-[#fff] rounded-[20px]"
+          >Verify Email Address</button>
+        </form>
         <div className="my-6 flex justify-between items-center">
           <p className="text-[#fff]">Already have an account?</p>
           <Link className="underline text-[#F10191]" to="/auth/signin">Login here</Link>
