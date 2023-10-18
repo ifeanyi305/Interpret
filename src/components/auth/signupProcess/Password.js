@@ -10,11 +10,16 @@ import { useInputWithFocus } from '../../../App';
 const Password = () => {
   const id = getEmail();
   const dispatch = useDispatch();
+  const [buttonClicked, setButtonClicked] = useState(false);
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
     userName: "",
     password: "",
   })
+
+  const handleButtonClick = () => {
+    setButtonClicked(!buttonClicked);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -95,8 +100,9 @@ const Password = () => {
         </div>
         <button
           type="submit"
-          className="bg-[#F10191] w-full mt-2 py-2 px-6 text-[#fff] rounded-[20px]"
-        >Create Account</button>
+          onClick={handleButtonClick}
+          className={`py-2 px-6 text-[#fff] mt-2 rounded-[20px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+          >Create Account</button>
       </form>
     </div>
   );

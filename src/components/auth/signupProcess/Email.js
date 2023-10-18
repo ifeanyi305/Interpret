@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 import { verifyEmail } from '../../../redux/auth/verifyEmail';
 import { BiSolidUser } from "react-icons/bi";
 
-const Email = ({ setNumber }) => {
+const Email = () => {
   const [signupModal, setSignupModal] = useState(false)
   const [email, setEmail] = useState('');
+  const [buttonClicked, setButtonClicked] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const dispatch = useDispatch();
 
@@ -41,6 +42,7 @@ const Email = ({ setNumber }) => {
     })
     setEmail("");
     setSignupModal(!signupModal)
+    setButtonClicked(!buttonClicked);
   }
 
   return (
@@ -68,12 +70,12 @@ const Email = ({ setNumber }) => {
           </div>
           <button
             onClick={verifyEmailAddress}
-            className="bg-[#F10191] w-full py-2 px-6 text-[#fff] rounded-[20px]"
+            className={`py-2 px-6 text-[#fff] rounded-[20px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
           >Verify Email Address</button>
         </form>
         <div className="my-6 flex justify-between items-center">
           <p className="text-[#fff]">Already have an account?</p>
-          <Link className="underline text-[#F10191]" to="/auth/signin">Login here</Link>
+          <Link className="underline text-[#f10191d9]" to="/auth/signin">Login here</Link>
         </div>
       </div>
       {

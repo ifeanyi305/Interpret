@@ -20,7 +20,6 @@ export const createProject = createAsyncThunk(
         body: JSON.stringify(data),
       };
       const response = await axios.post('https://annovate-backend-production.up.railway.app/api/projects/', data, config);
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response);

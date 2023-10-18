@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./styles/auth.css";
+import { ToastContainer } from 'react-toastify';
+import { flash } from '../../redux/flash/flash';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useInputWithFocus } from '../../App';
 import { BiSolidUser } from "react-icons/bi";
@@ -18,12 +21,17 @@ const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [response, setResponse] = useState(null);
-  console.log(response);
   const [loading, setLoading] = useState(false);
+  const [loadingPage, setLoadingPage] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
   const emailInput = useInputWithFocus('');
   const passwordInput = useInputWithFocus('');
 
   const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    setButtonClicked(!buttonClicked);
+  };
 
   const signinUser = (e) => {
     e.preventDefault();
@@ -45,16 +53,27 @@ const Signin = () => {
 
         localStorage.setItem('user', JSON.stringify(userDetails));
         setToken(userDetails);
-        navigate('/');
-        window.location.reload();
+        flash('success', "Login successful")
       })
       .catch((error) => {
-        console.error('There was a problem with the POST request:', error.response.data.msg);
+        flash('error', error.response.data.msg);
       })
       .finally(() => {
         setLoading(false);
       });
   }
+
+  useEffect(() => {
+    if (response && response !== null) {
+      setLoadingPage(true);
+
+      setTimeout(() => {
+        setLoadingPage(false);
+        navigate('/');
+        window.location.reload();
+      }, 3000);
+    }
+  }, [response, navigate]);
 
   const style = {
     con: "mb-2 flex items-center gap-2 py-2 px-6 text-[#fff] rounded-[20px]",
@@ -63,7 +82,7 @@ const Signin = () => {
 
   return (
     <>
-      {loading ? (
+      {loadingPage ? (
         <div className="loading fixed w-full h-full">
           <div className="flex justify-center items-center h-full">
             <div>
@@ -74,6 +93,18 @@ const Signin = () => {
         </div>
       ) : (
         <div className="signin fixed w-full h-full px-[10%] py-[15%]">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
           <div className="md:w-[30%]">
             <div>
               <h1>
@@ -112,14 +143,15 @@ const Signin = () => {
               <div className="flex mt-6 items-center justify-between">
                 <button
                   type="submit"
-                  className="bg-[#F10191] py-2 px-6 text-[#fff] rounded-[20px]"
-                >Login</button>
+                  onClick={handleButtonClick}
+                  className={`py-2 px-6 text-[#fff] rounded-[20px] ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+                  >{loading ? (<>loading...</>) : (<>Login</>)}</button>
                 <p className="text-[#fff] underline">Forgot password</p>
               </div>
             </form>
             <div className="my-2">
               <p className="text-[#fff]">Don't have an account?
-                <Link className="underline ml-[7%] text-[#F10191]" to="/auth/signup">Signup here</Link>
+                <Link className="underline ml-[7%] text-[#f10191d9]" to="/auth/signup">Signup here</Link>
               </p>
             </div>
           </div>
