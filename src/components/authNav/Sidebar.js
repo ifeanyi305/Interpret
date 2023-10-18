@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiExternalLink } from "react-icons/fi";
+import { getToken } from '../../components/auth/Signin';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProject } from '../../redux/project/userProject';
 
 const Sidebar = () => {
-  const projects = [
-    {
-      name: "Hello one",
-    },
-    {
-      name: "Hello two",
-    },
-    {
-      name: "Hello three",
-    }
-  ]
+  const { projects, loading, error } = useSelector((state) => state.userProject);
+
+  const dispatch = useDispatch();
+  const userDetails = getToken();
+  const userId = userDetails?.id;
+
+  useEffect(() => {
+    dispatch(fetchProject(userId));
+  }, [dispatch]);
+
 
   return (
     <div>
@@ -21,11 +23,15 @@ const Sidebar = () => {
           <p className="text-[#fff] mb-[15px] text-[15px] font-[700]">Recent Projects</p>
           <div>
             {
-              projects.map((project, index) => (
-                <div key={index}>
-                  <p className="mb-[10px] text-[#fff] border-[1px] border-[#fff] py-[3px] px-6 rounded-[4px]">{project.name}</p>
-                </div>
-              ))
+              loading ? (
+                <p className="text-white">loading projects...</p>
+              ) : projects ? (
+                projects.map((project, index) => (
+                  <div key={index}>
+                    <p className="mb-[10px] text-[#fff] border-[1px] border-[#fff] py-[3px] px-6 rounded-[4px]">{project.projectName}</p>
+                  </div>
+                ))
+              ) : (<p className="text-white">No Projects</p>)
             }
           </div>
         </div>

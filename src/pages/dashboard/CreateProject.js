@@ -38,7 +38,6 @@ const CreateProject = () => {
       } else {
         console.log('success', res);
         navigate('/dashboard');
-        window.location.reload();
       }
     })
     setProjectData({
