@@ -37,7 +37,7 @@ const CreateProject = () => {
         console.log('error', res);
       } else {
         console.log('success', res);
-        navigate('/dashboard');
+        navigate('/');
       }
     })
     setProjectData({
@@ -98,7 +98,7 @@ const CreateProject = () => {
                 />
               </div>
               <div className="flex justify-center items-center gap-6 mt-6 mb-4">
-                <Link to="/dashboard">
+                <Link to="/">
                   <button
                     type="button"
                     className="rounded-[5px] text-[#252525a8] font-[700] text-[12px] px-6 py-2 border-[1px] border-[#252525a8]"

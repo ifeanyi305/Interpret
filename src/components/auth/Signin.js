@@ -45,13 +45,14 @@ const Signin = () => {
 
         localStorage.setItem('user', JSON.stringify(userDetails));
         setToken(userDetails);
+        navigate('/');
+        window.location.reload();
       })
       .catch((error) => {
         console.error('There was a problem with the POST request:', error.response.data.msg);
       })
       .finally(() => {
         setLoading(false);
-        navigate("/")
       });
   }
 

@@ -25,7 +25,7 @@ const Sidebar = () => {
             {
               loading ? (
                 <p className="text-white">loading projects...</p>
-              ) : projects ? (
+              ) : projects && projects.length > 0 ? (
                 projects.map((project, index) => (
                   <div key={index}>
                     <p className="mb-[10px] text-[#fff] border-[1px] border-[#fff] py-[3px] px-6 rounded-[4px]">{project.projectName}</p>

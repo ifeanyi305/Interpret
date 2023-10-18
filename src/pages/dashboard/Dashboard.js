@@ -56,7 +56,7 @@ const Dashboard = () => {
             {
               loading ? (
                 <>loading projects...</>
-              ) : projects ? (
+              ) : projects && projects.length > 0 ? (
                 projects.map((project, index) => (
                   <div key={index} className={style.projectCon}>
                     <div>
@@ -73,7 +73,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                 ))
-              ) : error ? (<>An error occured, please check your internet connection</>) : <>No Projects</>
+              ) : (<p className="text-[#000]">No Projects</p>)
             }
           </div>
         </div>
