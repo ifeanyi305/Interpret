@@ -56,7 +56,6 @@ export const signout = createAsyncThunk(
 );
 
 export default (state = initialState, action) => {
-  console.log("action", action.type);
   switch (action.type) {
     case `${SIGN_IN}/pending`:
       return { userData: [], loading: true, error: false };

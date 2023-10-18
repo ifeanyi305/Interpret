@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getToken } from '../../components/auth/Signin';
 import Nav from '../../components/authNav/Nav';
-import createProject from '../../redux/project/createProject';
+import { createProject } from '../../redux/project/createProject';
 import "./styles/dashboard.css";
 import { Link } from 'react-router-dom';
 
 const CreateProject = () => {
   const [projectData, setProjectData] = useState({
-    projectType: "",
+    projectType: "Object Detection",
     objectName: "",
     projectName: "",
   })
+  const { loading } = useSelector((state) => state.project);
   const userDetails = getToken();
   const userId = userDetails?.id;
   const navigate = useNavigate();
@@ -36,7 +37,14 @@ const CreateProject = () => {
         console.log('error', res);
       } else {
         console.log('success', res);
+        navigate('/dashboard');
+        window.location.reload();
       }
+    })
+    setProjectData({
+      projectType: "",
+      objectName: "",
+      projectName: "",
     })
   }
 
@@ -59,6 +67,7 @@ const CreateProject = () => {
                   className={style.input}
                   value={projectData.projectType}
                   onChange={handleChange}
+                  required
                 >
                   <option value="Object Detection">Object Detection</option>
                   <option value="Single Object Detection">Single Object Detection</option>
@@ -71,6 +80,7 @@ const CreateProject = () => {
                   type="text"
                   name="objectName"
                   className={style.input}
+                  required
                   placeholder="E.g. 'car' or 'football' or 'traffic light' "
                   value={projectData.objectName}
                   onChange={handleChange}
@@ -81,6 +91,7 @@ const CreateProject = () => {
                 <input
                   type="text"
                   name="projectName"
+                  required
                   className={style.input}
                   placeholder="E.g. 'car parking' or 'Solar system'"
                   value={projectData.projectName}
@@ -97,7 +108,7 @@ const CreateProject = () => {
                 <button
                   className="rounded-[5px] text-[#252525a8] font-[700] text-[12px] px-6 py-2 bg-[#e8e8e8]"
                   type="submit"
-                >Continue</button>
+                >{loading ? "loading..." : "continue"}</button>
               </div>
             </form>
           </div>
