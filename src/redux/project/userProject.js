@@ -14,7 +14,6 @@ export const fetchProject = createAsyncThunk(
   async (userId, { rejectWithValue }) => {
     try {
       const response = await axios.get(`https://annovate-backend-production.up.railway.app/api/projects/${userId}`);
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response);

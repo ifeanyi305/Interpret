@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getToken } from '../../components/auth/Signin';
 import Nav from '../../components/authNav/Nav';
+import { ToastContainer } from 'react-toastify';
+import { flash } from '../../redux/flash/flash';
+import 'react-toastify/dist/ReactToastify.css';
 import { createProject } from '../../redux/project/createProject';
 import "./styles/dashboard.css";
 import { Link } from 'react-router-dom';
@@ -15,9 +18,14 @@ const CreateProject = () => {
   })
   const { loading } = useSelector((state) => state.project);
   const userDetails = getToken();
+  const [buttonClicked, setButtonClicked] = useState(false);
   const userId = userDetails?.id;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleButtonClick = () => {
+    setButtonClicked(!buttonClicked);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,9 +42,9 @@ const CreateProject = () => {
     }
     dispatch(createProject(data)).then((res) => {
       if (res.error) {
-        console.log('error', res);
+        flash('error', res.error.message);
       } else {
-        console.log('success', res);
+        flash('success', 'project created');
         navigate('/');
       }
     })
@@ -55,6 +63,18 @@ const CreateProject = () => {
     <div className="flex">
       <Nav />
       <div className="md:ml-[23%] px-6">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <div className="bg-[#fff] border-[0.3px] border-[#0000004d] rounded-[13px] w-full md:w-[603px] md:ml-[23%] py-4 mt-[139px] create_project_con">
           <p className="text-center text-[16px] py-6 text-[#545454] font-[400]">Let's create a new project</p>
           <div className="m-auto md:w-[70%]">
@@ -105,7 +125,8 @@ const CreateProject = () => {
                   >Cancel</button>
                 </Link>
                 <button
-                  className="rounded-[5px] text-[#252525a8] font-[700] text-[12px] px-6 py-2 bg-[#e8e8e8]"
+                  onClick={handleButtonClick}
+                  className={`rounded-[5px] text-[#252525a8] font-[700] text-[12px] px-6 py-2 ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#e8e8e8]'}`}
                   type="submit"
                 >{loading ? "loading..." : "continue"}</button>
               </div>
