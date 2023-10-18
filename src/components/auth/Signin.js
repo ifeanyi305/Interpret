@@ -3,7 +3,6 @@ import axios from 'axios';
 import "./styles/auth.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { useInputWithFocus } from '../../App';
-import signin from '../../redux/auth/signin';
 import { BiSolidUser } from "react-icons/bi";
 import { BiSolidLockAlt } from "react-icons/bi";
 import Annovate from "../../assets/auth/AnnoVateLogo.png";
@@ -19,6 +18,7 @@ const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [response, setResponse] = useState(null);
+  console.log(response);
   const [loading, setLoading] = useState(false);
   const emailInput = useInputWithFocus('');
   const passwordInput = useInputWithFocus('');

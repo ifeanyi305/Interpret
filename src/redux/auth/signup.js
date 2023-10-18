@@ -27,7 +27,7 @@ export const signUp = createAsyncThunk(
   }
 );
 
-export default (state = initialState, action) => {
+const signupReducer = (state = initialState, action) => {
   switch (action.type) {
     case `${SIGN_UP}/pending`:
       return {
@@ -52,3 +52,5 @@ export default (state = initialState, action) => {
       return { userInfo: [], loading: false, error: false };
   }
 }
+
+export default signupReducer;

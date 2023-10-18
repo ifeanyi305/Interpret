@@ -40,7 +40,7 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 
-export default (state = initialState, action) => {
+const emailReducer = (state = initialState, action) => {
   switch (action.type) {
     case `${VERIFY_EMAIL}/pending`:
       return {
@@ -64,3 +64,5 @@ export default (state = initialState, action) => {
       return { email: [], loading: false, error: false };
   }
 }
+
+export default emailReducer;

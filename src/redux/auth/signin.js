@@ -55,7 +55,7 @@ export const signout = createAsyncThunk(
   }
 );
 
-export default (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case `${SIGN_IN}/pending`:
       return { userData: [], loading: true, error: false };
@@ -64,10 +64,13 @@ export default (state = initialState, action) => {
         userData: action.payload,
         loading: false,
         error: false,
-      }
+      };
     case `${SIGN_IN}/rejected`:
-      return { userData: [], loading: false, error: true, };
+      return { userData: [], loading: false, error: true };
     default:
-      return {...state, userData: [], loading: false, error: false};
+      return { ...state, userData: [], loading: false, error: false };
   }
-}
+};
+
+export default authReducer;
+
