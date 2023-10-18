@@ -7,6 +7,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import CreateProject from './pages/dashboard/CreateProject';
 import PublicRoute from './protectedRoute/publicRoute';
 import UserRoute from './protectedRoute/userRoute';
+import Password from './components/auth/signupProcess/Password';
 
 export const useInputWithFocus = (initialValue) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -40,13 +41,17 @@ export const useInputWithFocus = (initialValue) => {
 function App() {
   return (
     <div className="App">
+      {/* Public Route */}
       <Routes>
         <Route element={<PublicRoute />}>
           <Route path="/" element={<Homepage />} />
           <Route path="/auth/signin" element={<Signin />} />
           <Route path="/auth/signup" element={<Signup />} />
+          <Route path="/auth/setup_acc" element={<Password />} />
         </Route>
       </Routes>
+
+      {/* User's Route */}
       <Routes>
         <Route element={<UserRoute />}>
           <Route path="/" element={<Dashboard />} />
