@@ -12,3 +12,8 @@
   height: 5px;
   width: 1px;
 }
+
+body:has(.email_sent_con) .email_con {
+  z-index: 0;
+  filter: blur(8px);
+}

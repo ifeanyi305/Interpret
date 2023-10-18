@@ -3,3 +3,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.loading {
+  background-color: #211F53;
+}

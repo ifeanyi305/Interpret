@@ -9,3 +9,7 @@
 .create_project_con {
   box-shadow: rgba(0, 0, 0, 0.06);
 }
+
+.input-focus:focus {
+  border-color: pink;
+}

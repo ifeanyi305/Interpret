@@ -19,10 +19,10 @@ const Signup = () => {
   }
 
   return (
-    <div className="signup px-[10%] py-[15%]">
-      <div className="w-[30%]">
+    <div className="signup fixed w-full h-full px-[10%] py-[15%]">
+      <div className="md:w-[30%]">
         <div>
-          <h1>
+          <h1 className="email_con">
             <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
           </h1>
         </div>
