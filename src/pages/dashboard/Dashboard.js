@@ -8,7 +8,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
-  const { projects, loading, error } = useSelector((state) => state.userProject);
+  const { projects, loading } = useSelector((state) => state.userProject);
 
   const dispatch = useDispatch();
   const userDetails = getToken();
@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(fetchProject(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   const style = {
     projectObjects: "text-[12px] text-[#252525a6] font-[400]",
