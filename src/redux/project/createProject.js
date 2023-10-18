@@ -28,7 +28,7 @@ export const createProject = createAsyncThunk(
   }
 );
 
-export default (state = initialState, action) => {
+const projectReducer = (state = initialState, action) => {
   switch (action.type) {
     case `${CREATE_PROJECT}/pending`:
       return {
@@ -52,3 +52,5 @@ export default (state = initialState, action) => {
       return { project: [], loading: false, error: false };
   }
 }
+
+export default projectReducer;

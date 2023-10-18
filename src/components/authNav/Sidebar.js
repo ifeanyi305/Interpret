@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProject } from '../../redux/project/userProject';
 
 const Sidebar = () => {
-  const { projects, loading, error } = useSelector((state) => state.userProject);
+  const { projects, loading } = useSelector((state) => state.userProject);
 
   const dispatch = useDispatch();
   const userDetails = getToken();
@@ -13,8 +13,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     dispatch(fetchProject(userId));
-  }, [dispatch]);
-
+  }, [dispatch, userId]);
 
   return (
     <div>
