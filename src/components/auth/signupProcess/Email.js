@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import { flash } from '../../../redux/flash/flash';
+import 'react-toastify/dist/ReactToastify.css';
+import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { verifyEmail } from '../../../redux/auth/verifyEmail';
@@ -23,6 +27,10 @@ const Email = () => {
     setIsFocused(false);
   };
 
+  const closeModal = () => {
+    setSignupModal(false)
+  }
+
   const containerStyle = {
     backgroundColor: '#000',
     border: `1px solid ${isFocused ? '#F10191' : '#fff'}`,
@@ -35,18 +43,30 @@ const Email = () => {
     }
     dispatch(verifyEmail(data)).then((res) => {
       if (res.error) {
-        console.log('error', res);
+        flash('error', res.payload.data.error);
       } else {
-        console.log('success', res);
+        console.log('success', "email sent");
+        setSignupModal(!signupModal)
       }
     })
     setEmail("");
-    setSignupModal(!signupModal)
     setButtonClicked(!buttonClicked);
   }
 
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="email_con">
         <p className="text-[#fff] text-center">Don&apos;t annotate, let&apos;s annovate</p>
         <div className="my-6">
@@ -81,6 +101,9 @@ const Email = () => {
       {
         signupModal ? (
           <div className="bg-[#AAA2BDBF] email_sent_con w-[70%] md:w-[40%] fixed top-[20%] left-[15%] md:left-[30%] rounded-[20px] px-[5%] py-4">
+            <div className="flex justify-end">
+              <button type="button" onClick={closeModal}><AiOutlineClose /></button>
+            </div>
             <h1 className="text-[#211F53] text-center text-[23px] font-[700] my-6">Thank you for considering us</h1>
             <p className="text-[#FFFFFF] text-[14px] text-center font-[600]">
               A confirmation mail has been

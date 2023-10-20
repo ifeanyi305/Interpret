@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import Annovate from "../../../assets/auth/AnnoVateLogo.png";
 import { signUp } from '../../../redux/auth/signup';
 import { getEmail } from '../../../redux/auth/verifyEmail';
 import { BiSolidLockAlt } from "react-icons/bi";
@@ -53,57 +54,64 @@ const Password = () => {
   }
 
   return (
-    <div>
-      <div className="mt-6 mb-2">
-        <p className="text-[#fff] text-center">Your email has been verified zainab@gmail.com</p>
-      </div>
-      <p className="text-[#fff] mb-4 text-center">Let&apos;s setup your account</p>
-      <form onSubmit={createUser}>
-        <div className={style.con} style={userInput.containerStyle}>
-          <BiSolidUser className="text-[#F10191]" />
-          <input
-            type="text"
-            name="userName"
-            value={userData.userName}
-            placeholder="Zainab"
-            required
-            className={style.input}
-            onChange={handleChange}
-            onFocus={userInput.handleFocus}
-            onBlur={userInput.handleBlur}
-          />
+    <div className="signup fixed w-full h-full px-[10%] py-[15%]">
+      <div className="md:w-[30%]">
+        <div>
+          <h1 className="email_con">
+            <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
+          </h1>
         </div>
-        <div className={style.con} style={passwordInput.containerStyle}>
-          <BiSolidLockAlt className="text-[#F10191]" />
-          <input
-            type="password"
-            name="password"
-            value={userData.password}
-            required
-            placeholder="password"
-            className={style.input}
-            onChange={handleChange}
-            onFocus={passwordInput.handleFocus}
-            onBlur={passwordInput.handleBlur}
-          />
+        <div className="mt-6 mb-2">
+          <p className="text-[#fff] text-center">Your email has been verified zainab@gmail.com</p>
         </div>
-        <div className={style.con} style={confirmPasswordInput.containerStyle}>
-          <BiSolidLockAlt className="text-[#F10191]" />
-          <input
-            type="password"
-            placeholder="confirm-password"
-            required
-            className={style.input}
-            onFocus={confirmPasswordInput.handleFocus}
-            onBlur={confirmPasswordInput.handleBlur}
-          />
-        </div>
-        <button
-          type="submit"
-          onClick={handleButtonClick}
-          className={`py-2 px-6 text-[#fff] mt-2 rounded-[20px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+        <p className="text-[#fff] mb-4 text-center">Let&apos;s setup your account</p>
+        <form onSubmit={createUser}>
+          <div className={style.con} style={userInput.containerStyle}>
+            <BiSolidUser className="text-[#F10191]" />
+            <input
+              type="text"
+              name="userName"
+              value={userData.userName}
+              placeholder="Zainab"
+              required
+              className={style.input}
+              onChange={handleChange}
+              onFocus={userInput.handleFocus}
+              onBlur={userInput.handleBlur}
+            />
+          </div>
+          <div className={style.con} style={passwordInput.containerStyle}>
+            <BiSolidLockAlt className="text-[#F10191]" />
+            <input
+              type="password"
+              name="password"
+              value={userData.password}
+              required
+              placeholder="password"
+              className={style.input}
+              onChange={handleChange}
+              onFocus={passwordInput.handleFocus}
+              onBlur={passwordInput.handleBlur}
+            />
+          </div>
+          <div className={style.con} style={confirmPasswordInput.containerStyle}>
+            <BiSolidLockAlt className="text-[#F10191]" />
+            <input
+              type="password"
+              placeholder="confirm-password"
+              required
+              className={style.input}
+              onFocus={confirmPasswordInput.handleFocus}
+              onBlur={confirmPasswordInput.handleBlur}
+            />
+          </div>
+          <button
+            type="submit"
+            onClick={handleButtonClick}
+            className={`py-2 px-6 text-[#fff] mt-2 rounded-[20px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
           >Create Account</button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
