@@ -44,10 +44,12 @@ const Email = () => {
     }
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
+    setLoading(true);
+    
     if (!email.match(emailPattern)) {
+      setLoading(false);
       flash('warning', 'Invalid email address');
     }
-    setLoading(true);
 
     dispatch(verifyEmail(data)).then((res) => {
       if (res.error) {
@@ -58,7 +60,9 @@ const Email = () => {
         flash('success', "email sent for verification");
         setSignupModal(!signupModal);
       }
-    })
+    }).finally(() => {
+      setLoading(false);
+    });
     setButtonClicked(!buttonClicked);
   }
 
