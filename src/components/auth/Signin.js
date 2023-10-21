@@ -9,7 +9,6 @@ import { useInputWithFocus } from '../../App';
 import { BiSolidUser } from "react-icons/bi";
 import { BiSolidLockAlt } from "react-icons/bi";
 import Annovate from "../../assets/auth/AnnoVateLogo.png";
-import LoadingPage from "../../assets/auth/loading.png";
 
 const setToken = (token) => {
   localStorage.setItem('user', JSON.stringify({ token }));
@@ -87,12 +86,16 @@ const Signin = () => {
           <div className="flex justify-center items-center h-full">
             <div>
               <img src={Annovate} className="m-auto" alt="annovate logo" />
-              <img src={LoadingPage} className="m-auto mt-4" alt="loading" />
+              <div className="border-[#fff] m-auto mt-4 border-[1px] rounded-[70px] h-[8px] bg-[#fff] w-[149px]">
+                <div
+                  className="border-[#fff] border-[1px] bg-[#f10191d9] rounded-[75px] h-[8px] mt-[-1px] w-[0px] animate-slide"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className="signin fixed w-full h-full px-[10%] py-[15%]">
+        <div className="signin w-full h-full px-[10%] py-[9%]">
           <ToastContainer
             position="top-right"
             autoClose={5000}
@@ -145,7 +148,7 @@ const Signin = () => {
                   type="submit"
                   onClick={handleButtonClick}
                   className={`py-2 px-6 text-[#fff] rounded-[20px] ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
-                  >{loading ? (<>loading...</>) : (<>Login</>)}</button>
+                >{loading ? (<>loading...</>) : (<>Login</>)}</button>
                 <p className="text-[#fff] underline">Forgot password</p>
               </div>
             </form>

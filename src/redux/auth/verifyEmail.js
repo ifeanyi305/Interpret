@@ -28,6 +28,7 @@ export const verifyEmail = createAsyncThunk(
       const response = await axios.post('https://annovate-backend-production.up.railway.app/api/users/', data, config);
       console.log(response);
       const userEmail = {
+        email: response.data.email,
         emailId: response.data._id,
       };
 

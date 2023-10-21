@@ -1,9 +1,27 @@
-.signin, .signup {
+.signin,
+.signup {
   background-image: url(../../../assets/auth/authBg.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
 }
 
 .loading {
   background-color: #211F53;
+}
+
+@keyframes slide {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 148px;
+  }
+}
+
+.animate-slide {
+  animation: slide 3s ease-in-out;
 }
