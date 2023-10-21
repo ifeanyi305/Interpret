@@ -75,8 +75,8 @@ const Signin = () => {
   }, [response, navigate]);
 
   const style = {
-    con: "mb-2 flex items-center gap-2 py-2 px-6 text-[#fff] rounded-[20px]",
-    input: "bg-transparent w-full border-none focus:outline-none",
+    con: "mb-4 flex items-center gap-2 py-2 px-6 text-[#fff] rounded-[20px]",
+    input: "bg-transparent text-[#CACACA] font-[700] text-[15px] w-full border-none focus:outline-none",
   }
 
   return (
@@ -114,7 +114,7 @@ const Signin = () => {
                 <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
               </h1>
             </div>
-            <div className="mt-6 mb-4">
+            <div className="mt-8 mb-6">
               <p className="text-[#fff] text-[28px] font-extrabold text-center">Welcome back!</p>
               <p className="text-[#fff] text-center">Login to your account</p>
             </div>
@@ -143,19 +143,18 @@ const Signin = () => {
                   onBlur={passwordInput.handleBlur}
                 />
               </div>
-              <div className="flex mt-6 items-center justify-between">
+              <div className="flex mt-8 items-center justify-between">
                 <button
                   type="submit"
                   onClick={handleButtonClick}
                   className={`py-2 px-6 text-[#fff] rounded-[20px] ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
                 >{loading ? (<>loading...</>) : (<>Login</>)}</button>
-                <p className="text-[#fff] underline">Forgot password</p>
+                <p className="text-[#fff] underline">Forgot password?</p>
               </div>
             </form>
-            <div className="my-2">
-              <p className="text-[#fff]">Don't have an account?
-                <Link className="underline ml-[7%] text-[#f10191d9]" to="/auth/signup">Signup here</Link>
-              </p>
+            <div className="my-2 flex gap-2 items-center justify-between">
+              <p className="text-[#fff]">Don't have an account?</p>
+              <p><Link className="underline text-[#f10191d9]" to="/auth/signup">Signup here</Link></p>
             </div>
           </div>
         </div>

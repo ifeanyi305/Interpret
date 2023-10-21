@@ -8,11 +8,12 @@ import { flash } from '../../redux/flash/flash';
 import 'react-toastify/dist/ReactToastify.css';
 import { createProject } from '../../redux/project/createProject';
 import "./styles/dashboard.css";
+// import Select from 'react-select';
 import { Link } from 'react-router-dom';
 
 const CreateProject = () => {
   const [projectData, setProjectData] = useState({
-    projectType: "Object Detection",
+    projectType: "",
     objectName: "",
     projectName: "",
   })
@@ -57,7 +58,7 @@ const CreateProject = () => {
 
   const style = {
     label: "block text-[#545454] text-[12px] font-[700]",
-    input: "w-full bg-white py-2 px-4 mt-[7px] text-[#252525a8] rounded-[5px] border-[1px] border-[#252525a8]"
+    input: "w-full select_input bg-white py-2 px-4 mt-[7px] text-[#252525a8] rounded-[5px] border-[1px] border-[#252525a8]"
   }
   return (
     <div className="flex">
@@ -88,6 +89,7 @@ const CreateProject = () => {
                   onChange={handleChange}
                   required
                 >
+                  <option value="Select Project">Select Project</option>
                   <option value="Object Detection">Object Detection</option>
                   <option value="Single Object Detection">Single Object Detection</option>
                   <option value="Multi Object Detection">Multi Object Detection</option>
