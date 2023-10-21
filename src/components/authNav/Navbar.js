@@ -7,7 +7,9 @@ import { BiSolidUser } from "react-icons/bi";
 
 const Navbar = () => {
   const style = {
-    icon: "text-[#fff] w-[16px]"
+    icon: "text-[#fff] text-[20px]",
+    list: "bg-[#f10191b3] rounded-[20px] cursor-pointer",
+    cursor: "cursor-pointer"
   }
 
   const [selectedItem, setSelectedItem] = useState(0);
@@ -29,25 +31,25 @@ const Navbar = () => {
         <ul className="flex items-center nav_lists text-[14px] font-[500] text-white">
           <li
             onClick={() => handleItemClick(0)}
-            className={selectedItem === 0 ? 'bg-[#f10191b3] rounded-[20px] cursor-pointer px-4 py-6' : 'cursor-pointer'}
+            className={selectedItem === 0 ? style.list : style.cursor}
           >
             Projects
           </li>
           <li
             onClick={() => handleItemClick(1)}
-            className={selectedItem === 1 ? 'bg-[#f10191b3] rounded-[20px] cursor-pointer px-4 py-6' : 'cursor-pointer'}
+            className={selectedItem === 1 ? style.list : style.cursor}
           >
             Universal
           </li>
           <li
             onClick={() => handleItemClick(2)}
-            className={selectedItem === 2 ? 'bg-[#f10191b3] rounded-[20px] cursor-pointer px-4 py-6' : 'cursor-pointer'}
+            className={selectedItem === 2 ? style.list : style.cursor}
           >
             Explore
           </li>
           <li
             onClick={() => handleItemClick(3)}
-            className={selectedItem === 3 ? 'bg-[#f10191b3] rounded-[20px] cursor-pointer px-4 py-6' : 'cursor-pointer'}
+            className={selectedItem === 3 ? style.list : style.cursor}
           >
             Contact
           </li>

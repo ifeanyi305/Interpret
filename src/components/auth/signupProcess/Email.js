@@ -11,6 +11,7 @@ import { BiSolidUser } from "react-icons/bi";
 const Email = () => {
   const [signupModal, setSignupModal] = useState(false)
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const dispatch = useDispatch();
@@ -41,15 +42,23 @@ const Email = () => {
     const data = {
       email: email,
     }
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (!email.match(emailPattern)) {
+      flash('warning', 'Invalid email address');
+    }
+    setLoading(true);
+
     dispatch(verifyEmail(data)).then((res) => {
       if (res.error) {
+        setLoading(false);
         flash('error', res.payload.data.error);
       } else {
-        console.log('success', "email sent");
-        setSignupModal(!signupModal)
+        setLoading(false);
+        flash('success', "email sent for verification");
+        setSignupModal(!signupModal);
       }
     })
-    setEmail("");
     setButtonClicked(!buttonClicked);
   }
 
@@ -68,17 +77,17 @@ const Email = () => {
         theme="colored"
       />
       <div className="email_con">
-        <p className="text-[#fff] text-center">Don&apos;t annotate, let&apos;s annovate</p>
+        <p className="text-[#fff] text-center mb-2">Don&apos;t annotate, let&apos;s annovate</p>
         <div className="my-6">
           <p className="text-[#fff] text-center">Hey there!</p>
           <p className="text-[#fff] text-center">Create an account with us</p>
         </div>
         <form onSubmit={verifyEmailAddress}>
           <div
-            className="mb-4 flex items-center gap-2 bg-[#000] py-2 px-6 text-[#fff] rounded-[20px]"
+            className="mb-4 flex items-center gap-2 bg-[#000] py-2 px-6 text-[#fff] rounded-[70px]"
             style={containerStyle}
           >
-            <BiSolidUser className="text-[#F10191]" />
+            <BiSolidUser className="text-[#F10191] text-[29px]" />
             <input
               placeholder="E-mail"
               className="bg-transparent w-full border-none focus:outline-none"
@@ -90,8 +99,8 @@ const Email = () => {
           </div>
           <button
             onClick={verifyEmailAddress}
-            className={`py-2 px-6 text-[#fff] rounded-[20px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
-          >Verify Email Address</button>
+            className={`py-2 px-6 text-[#fff] mb-2 rounded-[70px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+          >{loading ? (<>loading...</>) : (<>Verify Email Address</>)}</button>
         </form>
         <div className="my-6 flex justify-between items-center">
           <p className="text-[#fff]">Already have an account?</p>
@@ -100,9 +109,11 @@ const Email = () => {
       </div>
       {
         signupModal ? (
-          <div className="bg-[#AAA2BDBF] email_sent_con w-[70%] md:w-[40%] fixed top-[20%] left-[15%] md:left-[30%] rounded-[20px] px-[5%] py-4">
+          <div className="bg-[#AAA2BDBF] email_sent_con w-[70%] md:w-[40%] fixed top-[20%] md:top-[30%] left-[15%] md:left-[30%] rounded-[20px] px-[5%] py-4">
             <div className="flex justify-end">
-              <button type="button" onClick={closeModal}><AiOutlineClose /></button>
+              <button type="button" className="pl-4" onClick={closeModal}>
+                <AiOutlineClose className="text-[29px] text-[#252525a8]" />
+              </button>
             </div>
             <h1 className="text-[#211F53] text-center text-[23px] font-[700] my-6">Thank you for considering us</h1>
             <p className="text-[#FFFFFF] text-[14px] text-center font-[600]">
@@ -113,7 +124,10 @@ const Email = () => {
             </p>
             <p className="my-4 text-[#FFFFFF] text-center text-[12px] my-6 font-[600]">
               If you&apos;ve not received any mail from AnnoVate,
-              <button type="button" className="text-[#211f53] ml-[3px] underline">Click here!</button>
+              <button
+                type="button"
+                onClick={verifyEmailAddress}
+                className="text-[#211f53] ml-[3px] underline">Click here!</button>
             </p>
           </div>
         ) : (<></>)
