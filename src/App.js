@@ -22,8 +22,8 @@ export const useInputWithFocus = (initialValue) => {
   };
 
   const containerStyle = {
-    backgroundColor: '#000',
-    border: `1px solid ${isFocused ? '#F10191' : '#fff'}`,
+    backgroundColor: `${isFocused ? '#000' : '#252525'}`,
+    border: `2px solid ${isFocused ? '#F10191' : '#cacacab3'}`,
   };
 
   const projectStyle = {

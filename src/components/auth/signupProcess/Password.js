@@ -64,7 +64,7 @@ const Password = () => {
 
   const style = {
     con: "bg-[#000] mb-2 flex items-center gap-2 border-[1px] border-[#F10191] py-2 px-6 text-[#fff] rounded-[70px]",
-    input: "bg-transparent w-full border-none focus:outline-none",
+    input: "bg-transparent text-[#CACACA] font-[700] text-[15px] w-full border-none focus:outline-none",
   }
 
   return (

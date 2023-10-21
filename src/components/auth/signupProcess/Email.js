@@ -33,8 +33,8 @@ const Email = () => {
   }
 
   const containerStyle = {
-    backgroundColor: '#000',
-    border: `1px solid ${isFocused ? '#F10191' : '#fff'}`,
+    backgroundColor: `${isFocused ? '#000' : '#252525'}`,
+    border: `2px solid ${isFocused ? '#F10191' : '#cacacab3'}`,
   };
 
   const verifyEmailAddress = (e) => {
@@ -49,6 +49,7 @@ const Email = () => {
     if (!email.match(emailPattern)) {
       setLoading(false);
       flash('warning', 'Invalid email address');
+      return;
     }
 
     dispatch(verifyEmail(data)).then((res) => {
@@ -88,13 +89,13 @@ const Email = () => {
         </div>
         <form onSubmit={verifyEmailAddress}>
           <div
-            className="mb-4 flex items-center gap-2 bg-[#000] py-2 px-6 text-[#fff] rounded-[70px]"
+            className="mb-4 flex items-center gap-2 py-2 px-6 rounded-[70px]"
             style={containerStyle}
           >
-            <BiSolidUser className="text-[#F10191] text-[29px]" />
+            <BiSolidUser className="text-[#F10191] text-[30px]" />
             <input
               placeholder="E-mail"
-              className="bg-transparent w-full border-none focus:outline-none"
+              className="bg-transparent text-[#CACACA] font-[700] text-[15px] w-full border-none focus:outline-none"
               value={email}
               onChange={handleInputChange}
               onFocus={handleFocus}
