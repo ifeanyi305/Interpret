@@ -101,7 +101,7 @@ const Password = () => {
               type="text"
               name="userName"
               value={userData.userName}
-              placeholder="Zainab"
+              placeholder="Username"
               required
               className={style.input}
               onChange={handleChange}
