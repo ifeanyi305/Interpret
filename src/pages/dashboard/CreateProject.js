@@ -77,23 +77,25 @@ const CreateProject = () => {
           theme="colored"
         />
         <div className="bg-[#fff] border-[0.3px] border-[#0000004d] rounded-[13px] w-full md:w-[603px] md:ml-[23%] py-4 mt-[139px] create_project_con">
-          <p className="text-center text-[16px] py-6 text-[#545454] font-[400]">Let's create a new project</p>
+          <p className="text-center text-[20px] py-6 text-[#545454] font-[600]">Let's create a new project</p>
           <div className="m-auto md:w-[70%]">
             <form onSubmit={submitProject}>
               <div className="mb-4">
                 <label htmlFor="label" className={style.label}>Project type</label>
-                <select
-                  name="projectType"
-                  className={style.input}
-                  value={projectData.projectType}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="Select Project">Select Project</option>
-                  <option value="Object Detection">Object Detection</option>
-                  <option value="Single Object Detection">Single Object Detection</option>
-                  <option value="Multi Object Detection">Multi Object Detection</option>
-                </select>
+                <div className="w-full select_input bg-white py-2 px-4 mt-[7px] text-[#252525a8] rounded-[5px] border-[1px] border-[#252525a8]">
+                  <select
+                    name="projectType"
+                    className="w-full focus:outline-none"
+                    value={projectData.projectType}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="Select Project Type">Select Project Type</option>
+                    <option value="Object Detection">Object Detection</option>
+                    <option value="Single Object Detection">Single Object Detection</option>
+                    <option value="Multi Object Detection">Multi Object Detection</option>
+                  </select>
+                </div>
               </div>
               <div className="mb-4">
                 <label htmlFor="label" className={style.label}>What are you detecting?</label>

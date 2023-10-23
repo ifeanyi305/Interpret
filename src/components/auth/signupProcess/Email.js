@@ -45,7 +45,7 @@ const Email = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     setLoading(true);
-    
+
     if (!email.match(emailPattern)) {
       setLoading(false);
       flash('warning', 'Invalid email address');
@@ -114,27 +114,30 @@ const Email = () => {
       </div>
       {
         signupModal ? (
-          <div className="bg-[#AAA2BDBF] email_sent_con w-[70%] md:w-[40%] fixed top-[20%] md:top-[30%] left-[15%] md:left-[30%] rounded-[20px] px-[5%] py-4">
+          <div className="bg-[#AAA2BDBF] email_sent_con w-[70%] md:w-[40%] fixed top-[20%] md:top-[30%] left-[15%] md:left-[30%] rounded-[20px] px-6 py-4">
             <div className="flex justify-end">
-              <button type="button" className="pl-4" onClick={closeModal}>
-                <AiOutlineClose className="text-[29px] text-[#252525a8]" />
+              <button type="button" onClick={closeModal}>
+                <AiOutlineClose className="text-[20px] font-extrabold text-[#211F53]" />
               </button>
             </div>
-            <h1 className="text-[#211F53] text-center text-[23px] font-[700] my-6">Thank you for considering us</h1>
-            <p className="text-[#FFFFFF] text-[14px] text-center font-[600]">
-              A confirmation mail has been
-              sent to your Email address, kindly follow
-              the instructions provided in that mail
-              to register yourself in AnnoVate.
-            </p>
-            <p className="my-4 text-[#FFFFFF] text-center text-[12px] my-6 font-[600]">
-              If you&apos;ve not received any mail from AnnoVate,
-              <button
-                type="button"
-                onClick={verifyEmailAddress}
-                className="text-[#211f53] ml-[3px] underline">Click here!</button>
-            </p>
+            <div className="px-[8%]">
+              <h1 className="text-[#211F53] text-center text-[23px] font-[700] mb-8">Thank you for considering us</h1>
+              <p className="text-[#FFFFFF] mb-4 text-[14px] text-center font-[600]">
+                A confirmation mail has been
+                sent to your Email address, kindly follow
+                the instructions provided in that mail
+                to register yourself in AnnoVate.
+              </p>
+              <p className="mt-6 text-[#FFFFFF] text-center text-[12px] mb-[7%] font-[600]">
+                If you&apos;ve not received any mail from AnnoVate,
+                <button
+                  type="button"
+                  onClick={verifyEmailAddress}
+                  className="text-[#211f53] ml-[3px] underline">Click here!</button>
+              </p>
+            </div>
           </div>
+
         ) : (<></>)
       }
     </div>

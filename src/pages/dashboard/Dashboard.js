@@ -45,13 +45,10 @@ const Dashboard = () => {
         </div>
         <div className="mb-6 flex justify-center items-center">
           <Link to="/dashboard/create_project">
-            <button
-              type="button"
-              className="text-[#fff] bg-[#f10191d9] text-[15px] font-[600] py-[5px] px-4 rounded-[204px]"
-            >
-              <span className="text-[20px] px-[3px] font-[600] text-[#FFFFFF]">+</span>
-              Create new project
-            </button>
+            <div className="flex gap-2 items-center text-[#fff] bg-[#f10191d9] py-[8px] px-4 rounded-[204px]">
+              <span className="font-[600]">+</span>
+              <button type="button" className="text-[15px] font-[600]">Create new project</button>
+            </div>
           </Link>
         </div>
         <div>

@@ -27,7 +27,7 @@ const Sidebar = () => {
               ) : projects && projects.length > 0 ? (
                 projects.map((project, index) => (
                   <div key={index}>
-                    <p className="mb-[10px] text-[#fff] border-[1px] border-[#fff] py-[3px] px-6 rounded-[4px]">{project.projectName}</p>
+                    <p className="mb-[10px] text-[#fff] border-[1px] border-[#211f53b3] bg-[#211f53b3] py-[3px] px-6 rounded-[4px]">{project.projectName}</p>
                   </div>
                 ))
               ) : (<p className="text-white">No Projects</p>)
