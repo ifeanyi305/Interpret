@@ -11,6 +11,14 @@
   border-bottom-left-radius: 15px;
 }
 
+input::webkit-input-placeholder {
+  background-color: transparent;
+}
+
+select::webkit-input-placeholder {
+  background-color: transparent;
+}
+
 /* * {
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
