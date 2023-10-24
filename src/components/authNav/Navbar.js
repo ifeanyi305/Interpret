@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Annovate from "../../assets/dashboard/logoAnnovate.png";
 import "./styles/navbar.css";
 import { MdNotifications } from "react-icons/md";
-import { BiSearch } from "react-icons/bi";
 import { BiSolidUser } from "react-icons/bi";
 
-const Navbar = () => {
+const Navbar = ({ handleNotification, handleProfile}) => {
   const style = {
     icon: "text-[#fff] text-[20px]",
     list: "bg-[#f10191b3] rounded-[20px] cursor-pointer",
@@ -55,9 +54,12 @@ const Navbar = () => {
           </li>
         </ul>
         <ul className="flex items-center text-[14px] gap-6 text-white">
-          <li><BiSearch className={style.icon} /></li>
-          <li><MdNotifications className={style.icon} /></li>
-          <li><BiSolidUser className={style.icon} /></li>
+          <button onClick={handleNotification}>
+            <li><MdNotifications className={style.icon} /></li>
+          </button>
+          <button onClick={handleProfile}>
+            <li><BiSolidUser className={style.icon} /></li>
+          </button>
         </ul>
       </div>
     </nav>

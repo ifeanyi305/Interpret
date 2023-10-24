@@ -67,6 +67,20 @@ const authReducer = (state = initialState, action) => {
       };
     case `${SIGN_IN}/rejected`:
       return { userData: [], loading: false, error: true };
+    // SIGN OUT
+    case `${SIGN_OUT}/pending`:
+      return { loading: true };
+    case `${SIGN_OUT}/fulfilled`:
+      return {
+        userData: null,
+        loading: false,
+      }
+    case `${SIGN_OUT}/rejected`:
+      return {
+        ...state,
+        loading: false,
+        errors: action.payload.errors,
+      }
     default:
       return { ...state, userData: [], loading: false, error: false };
   }

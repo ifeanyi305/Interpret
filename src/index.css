@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #F9FAFB;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
 /* * {
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;

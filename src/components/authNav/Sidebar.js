@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { FiExternalLink } from "react-icons/fi";
+import "./styles/navbar.css";
 import { getToken } from '../../components/auth/Signin';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProject } from '../../redux/project/userProject';
 
 const Sidebar = () => {
   const { projects, loading } = useSelector((state) => state.userProject);
+  const recentProjects = projects?.slice().reverse();
 
   const dispatch = useDispatch();
   const userDetails = getToken();
@@ -25,9 +27,9 @@ const Sidebar = () => {
               loading ? (
                 <p className="text-white">loading projects...</p>
               ) : projects && projects.length > 0 ? (
-                projects.map((project, index) => (
+                recentProjects.slice(0, 3).map((project, index) => (
                   <div key={index}>
-                    <p className="mb-[10px] text-[#fff] border-[1px] border-[#211f53b3] bg-[#211f53b3] py-[3px] px-6 rounded-[4px]">{project.projectName}</p>
+                    <p className="mb-[10px] text-[13px] font-[600] project_name text-[#fff] border-[1px] border-[#211f53b3] bg-[#211f53b3] py-[3px] px-6 rounded-[4px]">{project.projectName}</p>
                   </div>
                 ))
               ) : (<p className="text-white">No Projects</p>)
