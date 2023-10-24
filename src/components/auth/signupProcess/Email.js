@@ -29,7 +29,8 @@ const Email = () => {
   };
 
   const closeModal = () => {
-    setSignupModal(false)
+    setSignupModal(false);
+    setEmail("");
   }
 
   const containerStyle = {
@@ -81,11 +82,40 @@ const Email = () => {
         pauseOnHover
         theme="colored"
       />
+      {
+        signupModal ? (
+          <div className="w-full">
+            <div className="bg-[#AAA2BDBF] px-10 py-8 email_sent_con w-[70%] md:w-[40%] md:left-[30%] m-auto fixed rounded-[20px]">
+              <div className="flex justify-end">
+                <button type="button" onClick={closeModal}>
+                  <AiOutlineClose className="text-[20px] font-[900] text-[#211F53]" />
+                </button>
+              </div>
+              <div className="mt-[4px] px-[3%]">
+                <h1 className="text-[#211F53] text-center text-[23px] font-[700] mb-8">Thank you for considering us!</h1>
+                <p className="text-[#FFFFFF] mb-4 text-[14px] text-center font-[600]">
+                  A confirmation mail has been
+                  sent to your Email address, kindly follow
+                  the instructions provided in that mail
+                  to register yourself in AnnoVate.
+                </p>
+                <p className="mt-6 text-[#FFFFFF] text-center text-[12px] mb-[7%] font-[600]">
+                  If you&apos;ve not received any mail from AnnoVate,
+                  <button
+                    type="button"
+                    onClick={verifyEmailAddress}
+                    className="text-[#211f53] ml-[3px] underline">Click here!</button>
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : (<></>)
+      }
       <div className="email_con">
-        <p className="text-[#fff] text-center mb-2">Don&apos;t annotate, let&apos;s annovate</p>
-        <div className="my-6">
-          <p className="text-[#fff] text-center">Hey there!</p>
-          <p className="text-[#fff] text-center">Create an account with us</p>
+        <p className="text-[#CACACA] text-[17px] font-[700] text-center mb-2 mt-[4px]">Don&apos;t annotate, let&apos;s annovate</p>
+        <div className="mb-8 mt-[11%]">
+          <p className="text-[#CACACA] font-[500] text-[20px] text-center">Hey there!</p>
+          <p className="text-[#fff] text-center text-[18px] font-[500]">Create an account with us</p>
         </div>
         <form onSubmit={verifyEmailAddress}>
           <div
@@ -104,42 +134,14 @@ const Email = () => {
           </div>
           <button
             onClick={verifyEmailAddress}
-            className={`py-2 px-6 text-[#fff] mb-2 rounded-[70px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+            className="py-2 verify_email px-6 text-[#fff] font-[700] text-[16px] mb-2 rounded-[70px] w-full bg-[#f10191d9]"
           >{loading ? (<>loading...</>) : (<>Verify Email Address</>)}</button>
         </form>
-        <div className="my-6 flex justify-between items-center">
-          <p className="text-[#fff]">Already have an account?</p>
+        <div className="my-8 flex justify-between items-center">
+          <p className="text-[#fff] font-[500] text-[16px]">Already have an account?</p>
           <Link className="underline text-[#f10191d9]" to="/auth/signin">Login here</Link>
         </div>
       </div>
-      {
-        signupModal ? (
-          <div className="bg-[#AAA2BDBF] email_sent_con w-[70%] md:w-[40%] fixed top-[20%] md:top-[30%] left-[15%] md:left-[30%] rounded-[20px] px-6 py-4">
-            <div className="flex justify-end">
-              <button type="button" onClick={closeModal}>
-                <AiOutlineClose className="text-[20px] font-extrabold text-[#211F53]" />
-              </button>
-            </div>
-            <div className="px-[8%]">
-              <h1 className="text-[#211F53] text-center text-[23px] font-[700] mb-8">Thank you for considering us</h1>
-              <p className="text-[#FFFFFF] mb-4 text-[14px] text-center font-[600]">
-                A confirmation mail has been
-                sent to your Email address, kindly follow
-                the instructions provided in that mail
-                to register yourself in AnnoVate.
-              </p>
-              <p className="mt-6 text-[#FFFFFF] text-center text-[12px] mb-[7%] font-[600]">
-                If you&apos;ve not received any mail from AnnoVate,
-                <button
-                  type="button"
-                  onClick={verifyEmailAddress}
-                  className="text-[#211f53] ml-[3px] underline">Click here!</button>
-              </p>
-            </div>
-          </div>
-
-        ) : (<></>)
-      }
     </div>
   );
 };

@@ -27,7 +27,7 @@ export const useInputWithFocus = (initialValue) => {
   };
 
   const projectStyle = {
-    border: `1px solid ${isFocused ? '#F10191' : '#252525a8'}`,
+    border: `2px solid ${isFocused ? '#F10191' : '#252525a8'}`,
   }
 
   return {
@@ -42,6 +42,18 @@ export const useInputWithFocus = (initialValue) => {
 function App() {
   const emailID = getEmail();
   const id = emailID?.emailId;
+  const [notifications, setNotifications] = useState(false);
+  const [profile, setProfile] = useState(false);
+
+  const handleNotification = () => {
+    setNotifications(!notifications);
+    setProfile(false);
+  }
+
+  const handleProfile = () => {
+    setProfile(!profile);
+    setNotifications(false);
+  }
 
   return (
     <div className="App">
@@ -57,8 +69,11 @@ function App() {
 
       {/* User's Route */}
       <Routes>
-        <Route element={<UserRoute />}>
-          <Route path="/" element={<Dashboard />} />
+        <Route element={<UserRoute
+          handleNotification={handleNotification}
+          handleProfile={handleProfile}
+        />}>
+          <Route path="/" element={<Dashboard profile={profile} notifications={notifications} />} />
           <Route path="/dashboard/create_project" element={<CreateProject />} />
         </Route>
       </Routes>

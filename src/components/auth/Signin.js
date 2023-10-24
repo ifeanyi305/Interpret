@@ -75,7 +75,7 @@ const Signin = () => {
   }, [response, navigate]);
 
   const style = {
-    con: "mb-4 flex items-center gap-2 py-2 px-6 text-[#fff] rounded-[20px]",
+    con: "mb-4 flex items-center gap-2 py-2 px-6 text-[#fff] rounded-[70px]",
     input: "bg-transparent text-[#CACACA] font-[700] text-[15px] w-full border-none focus:outline-none",
   }
 
@@ -95,7 +95,7 @@ const Signin = () => {
           </div>
         </div>
       ) : (
-        <div className="signin w-full h-full px-[10%] py-[9%]">
+        <div className="signin w-full h-full px-[12%]">
           <ToastContainer
             position="top-right"
             autoClose={5000}
@@ -108,53 +108,55 @@ const Signin = () => {
             pauseOnHover
             theme="colored"
           />
-          <div className="md:w-[30%]">
-            <div>
-              <h1>
-                <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
-              </h1>
-            </div>
-            <div className="mt-8 mb-6">
-              <p className="text-[#fff] text-[28px] font-extrabold text-center">Welcome back!</p>
-              <p className="text-[#fff] text-center">Login to your account</p>
-            </div>
-            <form onSubmit={signinUser}>
-              <div className={style.con} style={emailInput.containerStyle}>
-                <BiSolidUser className="text-[#F10191]" />
-                <input
-                  type="text"
-                  placeholder="E-mail"
-                  className={style.input}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  onFocus={emailInput.handleFocus}
-                  onBlur={emailInput.handleBlur}
-                />
+          <div className="flex items-center h-full">
+            <div className="md:w-[31%]">
+              <div>
+                <h1>
+                  <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
+                </h1>
               </div>
-              <div className={style.con} style={passwordInput.containerStyle}>
-                <BiSolidLockAlt className="text-[#F10191]" />
-                <input
-                  type="password"
-                  placeholder="password"
-                  className={style.input}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  onFocus={passwordInput.handleFocus}
-                  onBlur={passwordInput.handleBlur}
-                />
+              <div className="mt-8 mb-6">
+                <p className="text-[#CACACA] text-[28px] font-extrabold text-center">Welcome back!</p>
+                <p className="text-[#ffffffd9] text-center text-[17px] font-[600]">Login to your account</p>
               </div>
-              <div className="flex mt-8 items-center justify-between">
-                <button
-                  type="submit"
-                  onClick={handleButtonClick}
-                  className={`py-2 px-6 text-[#fff] rounded-[20px] ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
-                >{loading ? (<>loading...</>) : (<>Login</>)}</button>
-                <p className="text-[#fff] underline">Forgot password?</p>
+              <form onSubmit={signinUser}>
+                <div className={style.con} style={emailInput.containerStyle}>
+                  <BiSolidUser className="text-[#F10191] text-[30px]" />
+                  <input
+                    type="text"
+                    placeholder="E-mail"
+                    className={style.input}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onFocus={emailInput.handleFocus}
+                    onBlur={emailInput.handleBlur}
+                  />
+                </div>
+                <div className={style.con} style={passwordInput.containerStyle}>
+                  <BiSolidLockAlt className="text-[#F10191] text-[30px]" />
+                  <input
+                    type="password"
+                    placeholder="password"
+                    className={style.input}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    onFocus={passwordInput.handleFocus}
+                    onBlur={passwordInput.handleBlur}
+                  />
+                </div>
+                <div className="flex mt-8 items-center justify-between">
+                  <button
+                    type="submit"
+                    onClick={handleButtonClick}
+                    className={`py-[7px] px-6 text[16px] font-[700] text-[#ffffff] rounded-[20px] ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+                  >{loading ? (<>loading...</>) : (<>Login</>)}</button>
+                  <p className="text-[#CACACA] underline">Forgot password?</p>
+                </div>
+              </form>
+              <div className="my-2 flex gap-2 items-center justify-between">
+                <p className="text-[#ffffff]">Don't have an account?</p>
+                <p><Link className="underline text-[#f10191d9]" to="/auth/signup">Signup here</Link></p>
               </div>
-            </form>
-            <div className="my-2 flex gap-2 items-center justify-between">
-              <p className="text-[#fff]">Don't have an account?</p>
-              <p><Link className="underline text-[#f10191d9]" to="/auth/signup">Signup here</Link></p>
             </div>
           </div>
         </div>
