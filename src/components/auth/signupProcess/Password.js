@@ -68,7 +68,7 @@ const Password = () => {
   }
 
   return (
-    <div className="signin w-full h-full px-[10%] py-[9%]">
+    <div className="signin w-full h-full px-[12%]">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -81,68 +81,70 @@ const Password = () => {
         pauseOnHover
         theme="colored"
       />
-      <div className="md:w-[28%]">
-        <div className="mb-4">
-          <h1 className="email_con">
-            <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
-          </h1>
+      <div className="flex items-center h-full">
+        <div className="md:w-[31%]">
+          <div className="mb-4">
+            <h1 className="email_con">
+              <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
+            </h1>
+          </div>
+          <div className="mt-6 mb-4">
+            <p className="text-[#fff] text-[16px] text-[#ffffffd9] font-[600] text-center">
+              Your email address has been verified
+            </p>
+            <p className="text-[15px] text-[#ffffff] font-[500] text-center">{email}</p>
+          </div>
+          <p className="text-[#fff] text-[18px] text-[#ffffffd9] font-[600] mb-6 text-center">Let&apos;s setup your account</p>
+          <form onSubmit={createUser}>
+            <div className={style.con} style={userInput.containerStyle}>
+              <BiSolidUser className="text-[#F10191] text-[29px]" />
+              <input
+                type="text"
+                name="userName"
+                value={userData.userName}
+                placeholder="Username"
+                required
+                className={style.input}
+                onChange={handleChange}
+                onFocus={userInput.handleFocus}
+                onBlur={userInput.handleBlur}
+              />
+            </div>
+            <div className={style.con} style={passwordInput.containerStyle}>
+              <BiSolidLockAlt className="text-[#F10191] text-[29px]" />
+              <input
+                type="password"
+                name="password"
+                value={userData.password}
+                required
+                placeholder="password"
+                className={style.input}
+                onChange={handleChange}
+                onFocus={passwordInput.handleFocus}
+                onBlur={passwordInput.handleBlur}
+              />
+            </div>
+            <div className={style.con} style={confirmPasswordInput.containerStyle}>
+              <BiSolidLockAlt className="text-[#F10191] text-[29px]" />
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="confirm-password"
+                required
+                value={userData.confirmPassword}
+                onChange={handleChange}
+                className={style.input}
+                onFocus={confirmPasswordInput.handleFocus}
+                onBlur={confirmPasswordInput.handleBlur}
+              />
+            </div>
+            <button
+              type="submit"
+              onClick={handleButtonClick}
+              className={`py-2 px-6 mt-2 text-[#fff] mt-2 rounded-[70px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+            >{loading ? (<>loading...</>) : (<>Create Account</>)}</button>
+          </form>
         </div>
-        <div className="mt-6 mb-4">
-          <p className="text-[#fff] text-[16px] text-[#ffffffd9] font-[600] text-center">
-            Your email address has been verified
-          </p>
-          <p className="text-[15px] text-[#ffffff] font-[500] text-center">{email}</p>
-        </div>
-        <p className="text-[#fff] text-[18px] text-[#ffffffd9] font-[600] mb-6 text-center">Let&apos;s setup your account</p>
-        <form onSubmit={createUser}>
-          <div className={style.con} style={userInput.containerStyle}>
-            <BiSolidUser className="text-[#F10191] text-[29px]" />
-            <input
-              type="text"
-              name="userName"
-              value={userData.userName}
-              placeholder="Username"
-              required
-              className={style.input}
-              onChange={handleChange}
-              onFocus={userInput.handleFocus}
-              onBlur={userInput.handleBlur}
-            />
-          </div>
-          <div className={style.con} style={passwordInput.containerStyle}>
-            <BiSolidLockAlt className="text-[#F10191] text-[29px]" />
-            <input
-              type="password"
-              name="password"
-              value={userData.password}
-              required
-              placeholder="password"
-              className={style.input}
-              onChange={handleChange}
-              onFocus={passwordInput.handleFocus}
-              onBlur={passwordInput.handleBlur}
-            />
-          </div>
-          <div className={style.con} style={confirmPasswordInput.containerStyle}>
-            <BiSolidLockAlt className="text-[#F10191] text-[29px]" />
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="confirm-password"
-              required
-              value={userData.confirmPassword}
-              onChange={handleChange}
-              className={style.input}
-              onFocus={confirmPasswordInput.handleFocus}
-              onBlur={confirmPasswordInput.handleBlur}
-            />
-          </div>
-          <button
-            type="submit"
-            onClick={handleButtonClick}
-            className={`py-2 px-6 mt-2 text-[#fff] mt-2 rounded-[70px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
-          >{loading ? (<>loading...</>) : (<>Create Account</>)}</button>
-        </form>
       </div>
     </div>
   );

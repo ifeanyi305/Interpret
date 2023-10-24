@@ -6,14 +6,16 @@ import Email from "./signupProcess/Email";
 
 const Signup = () => {
   return (
-    <div className="signup w-full h-full px-[10%] py-[9%]">
-      <div className="md:w-[27%]">
-        <div>
-          <h1 className="email_con">
-            <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
-          </h1>
+    <div className="signup w-full h-full px-[12%]">
+      <div className="flex items-center h-full">
+        <div className="md:w-[31%]">
+          <div>
+            <h1 className="email_con">
+              <Link to="/"><img src={Annovate} className="m-auto" alt="annovate logo" /></Link>
+            </h1>
+          </div>
+          <div className=""><Email /></div>
         </div>
-        <div className=""><Email /></div>
       </div>
     </div>
   );

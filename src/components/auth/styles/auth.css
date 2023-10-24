@@ -12,6 +12,11 @@
   background-color: #211F53;
 }
 
+.verify_email:hover {
+  background-color: #f1019199;
+  transition: .3s;
+}
+
 @keyframes slide {
   from {
     width: 0;
