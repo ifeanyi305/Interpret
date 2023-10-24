@@ -64,7 +64,6 @@ function App() {
           <Route path="/auth/signin" element={<Signin />} />
           <Route path="/auth/signup" element={<Signup />} />
           <Route path={`/auth/setup_acc/${id}`} element={<Password />} />
-          <Route path="*" element={<Homepage />} />
         </Route>
       </Routes>
 
@@ -76,7 +75,6 @@ function App() {
         />}>
           <Route path="/" element={<Dashboard profile={profile} notifications={notifications} />} />
           <Route path="/dashboard/create_project" element={<CreateProject />} />
-          <Route path="*" element={<Dashboard />} />
         </Route>
       </Routes>
     </div>
