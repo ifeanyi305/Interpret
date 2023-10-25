@@ -19,7 +19,6 @@ export const signUp = createAsyncThunk(
         }
       };
       const response = await axios.put(`https://annovate-backend-production.up.railway.app/api/users/${id}`, user, config);
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response);

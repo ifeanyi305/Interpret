@@ -27,10 +27,8 @@ const Dashboard = ({ notifications, profile }) => {
   const userId = userDetails?.id;
 
   useEffect(() => {
-    if (projects > 0) {
-      dispatch(fetchProject(userId));
-    }
-  }, [dispatch, userId, projects]);
+    dispatch(fetchProject(userId));
+  }, [dispatch, userId]);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -38,6 +36,10 @@ const Dashboard = ({ notifications, profile }) => {
     navigate('/auth/signin');
     window.location.reload();
   };
+
+  const checkId = (id) => {
+    console.log(id)
+  }
 
   const style = {
     projectObjects: "text-[10px] text-[#252525a6] font-[600]",
@@ -151,7 +153,7 @@ const Dashboard = ({ notifications, profile }) => {
               <>loading projects...</>
             ) : projects && projects.length > 0 ? (
               recentProjects.map((project, index) => (
-                <div key={index} className={style.projectCon}>
+                <div key={index} className={style.projectCon} onClick={() => checkId(project._id)}>
                   <div>
                     <div className="flex justify-between items-start gap-2">
                       <div className="flex items-center gap-4 mb-2">
