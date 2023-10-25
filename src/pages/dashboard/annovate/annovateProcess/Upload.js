@@ -12,7 +12,7 @@ const Upload = () => {
       case 1:
         return <SaveImages />
       default:
-        <DropImages />    
+        <DropImages />
     }
   };
 

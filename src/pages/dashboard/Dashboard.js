@@ -20,7 +20,8 @@ import { signout } from '../../redux/auth/signin';
 
 const Dashboard = ({ notifications, profile }) => {
   const { projects, loading } = useSelector((state) => state.userProject);
-  const recentProjects = projects?.slice().reverse();
+  const recentProjects = projects?.length > 0 ? projects?.slice().reverse() : [];
+  console.log("recentProjects", recentProjects);
 
   const dispatch = useDispatch();
   const userDetails = getToken();

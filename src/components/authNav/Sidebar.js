@@ -8,7 +8,7 @@ import { fetchProject } from '../../redux/project/userProject';
 
 const Sidebar = () => {
   const { projects, loading } = useSelector((state) => state.userProject);
-  const recentProjects = projects?.slice().reverse();
+  const recentProjects = projects?.length > 0 ? projects?.slice().reverse() : [];
   const { id } = useParams();
   console.log("sidebar id", id)
 
