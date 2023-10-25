@@ -37,10 +37,6 @@ const Dashboard = ({ notifications, profile }) => {
     window.location.reload();
   };
 
-  const checkId = (id) => {
-    console.log(id)
-  }
-
   const style = {
     projectObjects: "text-[10px] text-[#252525a6] font-[600]",
     projectCon: "shadow w-full cursor-pointer project border-[#0000004d] border-[0.3px] bg-white md:w-[49%] px-4 py-2 rounded-[8px]",
@@ -153,8 +149,8 @@ const Dashboard = ({ notifications, profile }) => {
               <>loading projects...</>
             ) : projects && projects.length > 0 ? (
               recentProjects.map((project, index) => (
-                <div key={index} className={style.projectCon} onClick={() => checkId(project._id)}>
-                  <div>
+                <div key={index} className={style.projectCon}>
+                  <Link to={`/annovate/${project._id}`}>
                     <div className="flex justify-between items-start gap-2">
                       <div className="flex items-center gap-4 mb-2">
                         <img src={Thumbnail} alt="thumbnail" />
@@ -178,7 +174,7 @@ const Dashboard = ({ notifications, profile }) => {
                       </div>
                       <p className={style.projectObjects}>Edit 2 hours ago</p>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))
             ) : (<p className="text-[#000]">No Projects</p>)

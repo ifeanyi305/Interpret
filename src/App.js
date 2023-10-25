@@ -9,6 +9,7 @@ import PublicRoute from './protectedRoute/publicRoute';
 import UserRoute from './protectedRoute/userRoute';
 import Password from './components/auth/signupProcess/Password';
 import { getEmail } from "./redux/auth/verifyEmail";
+import Annovate from './pages/dashboard/annovate/Annovate';
 
 export const useInputWithFocus = (initialValue) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -75,6 +76,7 @@ function App() {
         />}>
           <Route path="/" element={<Dashboard profile={profile} notifications={notifications} />} />
           <Route path="/dashboard/create_project" element={<CreateProject />} />
+          <Route path="/annovate/:id" element={<Annovate />} />
         </Route>
       </Routes>
     </div>
