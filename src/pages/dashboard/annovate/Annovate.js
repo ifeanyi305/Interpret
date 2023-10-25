@@ -6,7 +6,7 @@ const Annovate = () => {
   const currentState = () => {
     switch (number) {
       case 0:
-        return <Upload />
+        return <Upload setNumber={setNumber} />
       default:
         return <Upload />  
     }

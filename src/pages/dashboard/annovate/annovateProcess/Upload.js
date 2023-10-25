@@ -8,7 +8,7 @@ const Upload = () => {
   const currentPage = () => {
     switch (page) {
       case 0:
-        return <DropImages />
+        return <DropImages setPage={setPage} />
       case 1:
         return <SaveImages />
       default:
