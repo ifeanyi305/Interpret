@@ -20,17 +20,16 @@ import { signout } from '../../redux/auth/signin';
 
 const Dashboard = ({ notifications, profile }) => {
   const { projects, loading } = useSelector((state) => state.userProject);
-  const recentProjects = projects?.slice().reverse();
+  const recentProjects = projects?.length > 0 ? projects?.slice().reverse() : [];
+  console.log("recentProjects", recentProjects);
 
   const dispatch = useDispatch();
   const userDetails = getToken();
   const userId = userDetails?.id;
 
   useEffect(() => {
-    if (projects > 0) {
-      dispatch(fetchProject(userId));
-    }
-  }, [dispatch, userId, projects]);
+    dispatch(fetchProject(userId));
+  }, [dispatch, userId]);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -152,7 +151,7 @@ const Dashboard = ({ notifications, profile }) => {
             ) : projects && projects.length > 0 ? (
               recentProjects.map((project, index) => (
                 <div key={index} className={style.projectCon}>
-                  <div>
+                  <Link to={`/annovate/${project._id}`}>
                     <div className="flex justify-between items-start gap-2">
                       <div className="flex items-center gap-4 mb-2">
                         <img src={Thumbnail} alt="thumbnail" />
@@ -176,7 +175,7 @@ const Dashboard = ({ notifications, profile }) => {
                       </div>
                       <p className={style.projectObjects}>Edit 2 hours ago</p>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))
             ) : (<p className="text-[#000]">No Projects</p>)

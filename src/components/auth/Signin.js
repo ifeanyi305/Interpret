@@ -42,7 +42,6 @@ const Signin = () => {
 
     axios.post('https://annovate-backend-production.up.railway.app/api/auth/', data)
       .then((response) => {
-        console.log('Response:', response.data);
         setResponse(response.data);
 
         const userDetails = {

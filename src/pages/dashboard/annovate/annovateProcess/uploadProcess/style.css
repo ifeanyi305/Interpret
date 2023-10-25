@@ -1,0 +1,7 @@
+.file_container {
+  border: 1px dotted #f10191d9;
+}
+
+.instruction_list {
+  list-style: circle;
+}
