@@ -45,15 +45,24 @@ function App() {
   const id = emailID?.emailId;
   const [notifications, setNotifications] = useState(false);
   const [profile, setProfile] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
 
   const handleNotification = () => {
     setNotifications(!notifications);
+    setProfile(false);
+    setModalActive(true);
+  }
+
+  const closeModal = () => {
+    setNotifications(false);
+    setModalActive(false);
     setProfile(false);
   }
 
   const handleProfile = () => {
     setProfile(!profile);
     setNotifications(false);
+    setModalActive(true);
   }
 
   return (
@@ -74,7 +83,12 @@ function App() {
           handleNotification={handleNotification}
           handleProfile={handleProfile}
         />}>
-          <Route path="/" element={<Dashboard profile={profile} notifications={notifications} />} />
+          <Route path="/" element={<Dashboard
+            profile={profile}
+            modalActive={modalActive}
+            notifications={notifications}
+            closeModal={closeModal} />}
+          />
           <Route path="/dashboard/create_project" element={<CreateProject />} />
           <Route path="/annovate/:id" element={<Annovate />} />
         </Route>

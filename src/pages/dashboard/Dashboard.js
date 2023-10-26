@@ -18,10 +18,9 @@ import settings from "../../assets/dashboard/settings.png";
 import { useNavigate } from 'react-router-dom';
 import { signout } from '../../redux/auth/signin';
 
-const Dashboard = ({ notifications, profile }) => {
+const Dashboard = ({ notifications, profile, closeModal, modalActive }) => {
   const { projects, loading } = useSelector((state) => state.userProject);
   const recentProjects = projects?.length > 0 ? projects?.slice().reverse() : [];
-  console.log("recentProjects", recentProjects);
 
   const dispatch = useDispatch();
   const userDetails = getToken();
@@ -48,8 +47,13 @@ const Dashboard = ({ notifications, profile }) => {
   return (
     <div className="project_container">
       {
+        modalActive && (
+          <button onClick={closeModal} className="fixed w-screen closeModal_button h-screen top-0 bottom-0">&apos;</button>
+        )
+      }
+      {
         notifications ? (
-          <div className="border-[#0000004d] fixed bg-[#fff] rounded-[9px] border-[0.3px] right-0 mt-[6%] mr-[2%] w-[65%] md:w-[30%]">
+          <div className="border-[#0000004d] user_notification fixed bg-[#fff] rounded-[9px] border-[0.3px] right-0 mt-[6%] mr-[2%] w-[65%] md:w-[30%]">
             <div>
               <div className="px-4 py-6">
                 <div className="flex justify-between items-start gap-2">
@@ -83,41 +87,43 @@ const Dashboard = ({ notifications, profile }) => {
           </div>
         ) : (<></>)
       }
-      {
-        profile ? (
-          <div className="border-[#0000004d] fixed bg-[#fff] rounded-[9px] border-[0.3px] right-0 mt-[6%] mr-[2%] p-4">
-            <div className="flex justify-between items-center gap-2">
-              <img src={user} alt="user" />
-              <div>
-                <p className="text-[15px] font-[500] text-[#252525e6]">Noor</p>
-                <p className="text-[13px] font-[500] text-[#999999]">noor@gmail.com</p>
+      <button>
+        {
+          profile ? (
+            <div className="border-[#0000004d] user_profile fixed bg-[#fff] rounded-[9px] border-[0.3px] right-0 mt-[6%] mr-[2%] p-4">
+              <div className="flex justify-between items-center gap-2">
+                <img src={user} alt="user" />
+                <div>
+                  <p className="text-[15px] font-[500] text-[#252525e6]">Noor</p>
+                  <p className="text-[13px] font-[500] text-[#999999]">noor@gmail.com</p>
+                </div>
               </div>
+              <hr className="my-2" />
+              <ul>
+                <li className={style.list}>
+                  <img src={logoutIcon} alt="logout" />
+                  <p className={style.options}>Dashboard</p>
+                </li>
+                <li className={style.list}>
+                  <img src={settings} alt='settings' />
+                  <p className={style.options}>Profile Setting</p>
+                </li>
+                <li className={style.list}>
+                  <img src={upgrade} alt="upgrade" />
+                  <p className={style.options}>Upgrade Plan</p>
+                </li>
+                <li className={style.list} onClick={handleLogout}>
+                  <img src={logoutIcon} alt="logout" />
+                  <button
+                    type="button"
+                    className={style.options}
+                  >Log out</button>
+                </li>
+              </ul>
             </div>
-            <hr className="my-2" />
-            <ul>
-              <li className={style.list}>
-                <img src={logoutIcon} alt="logout" />
-                <p className={style.options}>Dashboard</p>
-              </li>
-              <li className={style.list}>
-                <img src={settings} alt='settings' />
-                <p className={style.options}>Profile Setting</p>
-              </li>
-              <li className={style.list}>
-                <img src={upgrade} alt="upgrade" />
-                <p className={style.options}>Upgrade Plan</p>
-              </li>
-              <li className={style.list} onClick={handleLogout}>
-                <img src={logoutIcon} alt="logout" />
-                <button
-                type="button"
-                className={style.options}
-                >Log out</button>
-              </li>
-            </ul>
-          </div>
-        ) : (<></>)
-      }
+          ) : (<></>)
+        }
+      </button>
       <div className="px-[7%] pt-[12%]">
         <div className="bg-[#fff] shadow w-full rounded-[8px] border-[0.3px] border-[#0000004d]">
           <div className="px-6 py-4">

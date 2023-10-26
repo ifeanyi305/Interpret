@@ -5,3 +5,14 @@
 .instruction_list {
   list-style: circle;
 }
+
+@keyframes file-slide {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+

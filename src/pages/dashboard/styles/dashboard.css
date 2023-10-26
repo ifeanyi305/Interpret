@@ -2,6 +2,14 @@
   box-shadow: rgba(0, 0, 0, 0.06);
 }
 
+.user_notification, .user_profile {
+  z-index: 50;
+}
+
+.closeModal_button {
+  cursor: auto;
+}
+
 .project:hover {
   background-color: rgba(0, 0, 0, 0.06);
   border: none;
