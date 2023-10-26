@@ -17,14 +17,16 @@ const Sidebar = () => {
   const userId = userDetails?.id;
 
   useEffect(() => {
-    dispatch(fetchProject(userId));
-  }, [dispatch, userId]);
+    if (projects?.length !== 0) {
+      dispatch(fetchProject(userId));
+    }
+  }, [projects, userId, dispatch]);
 
   return (
     <div>
       <div className="px-[4%] bg-[#373564] md:w-[23%] h-full fixed overflow-y-auto scrollbar">
         {
-          id === "" ? (
+          id === undefined ? (
             <div>
               <div className="mb-4 pt-[80px]">
                 <p className="text-[#fff] mb-[15px] text-[15px] font-[700]">Recent Projects</p>
@@ -70,18 +72,22 @@ const Sidebar = () => {
               <div>
                 {loading ? (
                   <p className="text-white">Loading projects...</p>
-                ) : projects && projects.length > 0 ? (
-                  projects
-                    .filter((project) => (project._id === id))
-                    .map((project, index) => (
-                      <div key={index}>
-                        <p className="mb-[10px] text-[13px] font-[600] project_name text-[#fff] border-[1px] border-[#211f53b3] bg-[#211f53b3] py-[3px] px-6 rounded-[4px]">
-                          {project.projectName}
-                        </p>
-                      </div>
-                    ))
                 ) : (
-                  <p className="text-white">No Projects</p>
+                  <>
+                    {
+                      projects?.length > 0 ? (
+                        projects.filter((project) => (project._id === id))
+                          .map((project, index) => (
+                            <div key={index}>
+                              <p className="mb-[10px] text-[13px] font-[600] project_name text-[#fff] border-[1px] border-[#211f53b3] bg-[#211f53b3] py-[3px] px-6 rounded-[4px]">
+                                {project.projectName}
+                              </p>
+                            </div>
+                          ))
+                      ) : (
+                        <p className="text-white">No Projects</p>
+                      )}
+                  </>
                 )}
               </div>
             </div>

@@ -1,9 +1,13 @@
 import React from 'react';
 
-const SaveImages = () => {
+const SaveImages = ({
+  imageFiles, imagesPreview, isDraggingOver, isLoading,
+  handleFileChange, handleDragEnter, handleDragOver,
+  handleDrop, handleDragLeave
+}) => {
   return (
     <div>
-      Save images
+      Save image
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Annovate = () => {
   }
 
   return (
-    <div className="mt-[9%]">
+    <div className="mt-[10%]">
       {currentState()}
     </div>
   );
