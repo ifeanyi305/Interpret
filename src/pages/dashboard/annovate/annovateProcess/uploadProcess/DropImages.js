@@ -40,22 +40,24 @@ const DropImages = ({
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
           >
-            {/* {imagesPreview.length > 0 ? ( */}
+            <div>
+              {
+                isLoading ? (
+                  <div>
+                    <p className="font-[700] text-[25px] text-center mt-4 text-[#f10191d9]">Processing Files...</p>
+                    <div className="border-[#fff] m-auto my-4 border-[1px] rounded-[70px] h-[8px] bg-[#fff] w-full">
+                      <div
+                        style={customStyles}
+                        className="border-[#fff] border-[1px] bg-[#f10191d9] rounded-[75px] h-[8px] mt-[-1px] w-[0px]"
+                      ></div>
+                    </div>
+                  </div>
+                ) : (<></>)
+              }
+            </div>
+            {imagesPreview.length > 0 ? (
               <div>
-                <div>
-                  <p className="font-[700] text-[25px] text-center mt-4 text-[#f10191d9]">Processing Files...</p>
-                  {
-                    isLoading ? (
-                      <div className="border-[#fff] m-auto my-4 border-[1px] rounded-[70px] h-[8px] bg-[#fff] w-full">
-                        <div
-                          style={customStyles}
-                          className="border-[#fff] border-[1px] bg-[#f10191d9] rounded-[75px] h-[8px] mt-[-1px] w-[0px]"
-                        ></div>
-                      </div>
-                    ) : (<></>)
-                  }
-                </div>
-                <div className="px-[7%] mb-4">
+                <div className="px-[7%] my-4">
                   {imageFiles.length > 0 && (
                     <div className="flex gap-2 flex-wrap">
                       {imageFiles.map((file, index) => (
@@ -72,13 +74,13 @@ const DropImages = ({
                   )}
                 </div>
               </div>
-            {/* ) : ( */}
+            ) : (
               <div>
                 <div className="px-6 py-4 text-center mt-2 md:w-[42%] m-auto">
                   <img src={Upload} className="m-auto my-2 bg-[#f1019140] rounded-[50%] p-4" alt="upload" />
                   <p className="text-[25px] font-[400] text-[#f10191d9]">Drag and drop images here</p>
                   <p className="text-[20px] font-[400] mb-2 text-[#252525a6]">Or</p>
-                  <div className="flex justify-between items-center gap-2">
+                  <div className="flex justify-center items-center gap-4">
                     <div className={style.inputCon}>
                       <img src={FileIcon} alt="fileicon" />
                       <input
@@ -131,7 +133,7 @@ const DropImages = ({
                   </div>
                 </div>
               </div>
-            {/* )} */}
+            )}
           </div>
         </div>
       </div>

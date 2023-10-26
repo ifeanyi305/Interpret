@@ -10,7 +10,6 @@ const Sidebar = () => {
   const { projects, loading } = useSelector((state) => state.userProject);
   const recentProjects = projects?.length > 0 ? projects?.slice().reverse() : [];
   const { id } = useParams();
-  console.log("sidebar id", id)
 
   const dispatch = useDispatch();
   const userDetails = getToken();
