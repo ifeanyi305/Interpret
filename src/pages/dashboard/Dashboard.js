@@ -21,14 +21,20 @@ import { signout } from '../../redux/auth/signin';
 const Dashboard = ({ notifications, profile, closeModal, modalActive }) => {
   const { projects, loading } = useSelector((state) => state.userProject);
   const recentProjects = projects?.length > 0 ? projects?.slice().reverse() : [];
+  console.log("recentProjects", projects);
+  console.log("loading", loading);
 
   const dispatch = useDispatch();
   const userDetails = getToken();
   const userId = userDetails?.id;
+  const userName = userDetails?.userName;
+  const userEmail = userDetails?.email;
 
   useEffect(() => {
-    dispatch(fetchProject(userId));
-  }, [dispatch, userId]);
+    if (projects?.length === 0) {
+      dispatch(fetchProject(userId));
+    }
+  }, [dispatch, userId, projects]);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -94,8 +100,8 @@ const Dashboard = ({ notifications, profile, closeModal, modalActive }) => {
               <div className="flex justify-between items-center gap-2">
                 <img src={user} alt="user" />
                 <div>
-                  <p className="text-[15px] font-[500] text-[#252525e6]">Noor</p>
-                  <p className="text-[13px] font-[500] text-[#999999]">noor@gmail.com</p>
+                  <p className="text-[15px] user_name font-[500] text-[#252525e6]">{userName}</p>
+                  <p className="text-[13px] font-[500] text-[#999999]">{userEmail}</p>
                 </div>
               </div>
               <hr className="my-2" />

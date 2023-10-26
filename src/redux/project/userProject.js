@@ -13,10 +13,11 @@ export const fetchProject = createAsyncThunk(
   USER_PROJECT,
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`https://annovate-backend-production.up.railway.app/api/projects/${userId}`);
+      const response = await axios.get(`https://annovate-backend-production.up.railway.app/api/projects/user/${userId}`);
       if (response.status === 200) {
         return response.data;
       }
+      console.log("response", response);
       return response.error
     } catch (error) {
       return rejectWithValue(error.response);

@@ -90,7 +90,7 @@ function App() {
             closeModal={closeModal} />}
           />
           <Route path="/dashboard/create_project" element={<CreateProject />} />
-          <Route path="/annovate/:id" element={<Annovate />} />
+          <Route path="/annovate/:projectId" element={<Annovate />} />
         </Route>
       </Routes>
     </div>
