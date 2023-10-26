@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Upload from './annovateProcess/Upload';
 import Assign from './annovateProcess/Assign';
+import Annotate from './annovateProcess/Annotate';
 import { flash } from '../../../redux/flash/flash';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -93,7 +94,12 @@ const Annovate = () => {
         />
       case 1:
         return <Assign
+        imageFiles={imageFiles}
+        imagesPreview={imagesPreview}
+        setNumber={setNumber}
         />
+      case 2:
+        return <Annotate />  
       default:
         return <Upload />
     }
