@@ -19,7 +19,7 @@ const UserRoute = ({ handleNotification, handleProfile, notifications, profile, 
         closeModal={closeModal} />
       <section className='flex w-full'>
         <Sidebar />
-        <div className="md:ml-[20%] px-[6%] container">
+        <div className="md:ml-[20%] container">
           <Outlet />
         </div>
       </section>

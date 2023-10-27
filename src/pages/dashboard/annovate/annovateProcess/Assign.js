@@ -66,7 +66,7 @@ const Assign = ({
       <div className="flex justify-end my-4">
         <button
           onClick={() => setNumber(2)}
-          className="rounded-[204px] text-[#fff] font-[600] text-[14px] bg-[#f10191d9] px-6 py-2"
+          className="rounded-[204px] text-[#fff] font-[600] verify_email text-[14px] bg-[#f10191d9] px-6 py-2"
           type="button"
         >Continue</button>
       </div>

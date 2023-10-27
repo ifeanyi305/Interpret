@@ -2,6 +2,25 @@
   box-shadow: rgba(0, 0, 0, 0.06);
 }
 
+.project_container {
+  background-color: #F9FAFB;
+  width: 100%;
+}
+
+.blur_con {
+  z-index: 0;
+  filter: blur(10px);
+}
+
+.delete_project_modal {
+  z-index: 10000;
+}
+
+.non-clickable-button {
+  pointer-events: none;
+  cursor: default;
+}
+
 .user_notification, .user_profile {
   z-index: 50;
 }

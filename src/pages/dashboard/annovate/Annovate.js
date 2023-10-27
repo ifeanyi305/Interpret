@@ -106,7 +106,7 @@ const Annovate = () => {
   }
 
   return (
-    <div className="mt-[10%]">
+    <div className="mt-[10%] px-[8%]">
       <ToastContainer
         position="top-right"
         autoClose={5000}
