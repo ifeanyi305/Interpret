@@ -39,7 +39,7 @@ const SaveImages = ({
               <button
                 type="button"
                 onClick={() => setNumber(1)}
-                className="rounded-[204px] text-[#fff] font-[600] text-[14px] bg-[#f10191d9] px-6 py-2"
+                className="rounded-[204px] verify_email text-[#fff] font-[600] text-[14px] bg-[#f10191d9] px-6 py-2"
               >Save and Continue</button>
             </div>
           </div>

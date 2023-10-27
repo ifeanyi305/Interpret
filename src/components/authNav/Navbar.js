@@ -7,7 +7,7 @@ import { BiSolidUser } from "react-icons/bi";
 const Navbar = ({ handleNotification, handleProfile}) => {
   const style = {
     icon: "text-[#fff] text-[20px]",
-    list: "bg-[#f10191b3] rounded-[20px] cursor-pointer",
+    list: "bg-[#f10191b3] verify_email rounded-[20px] cursor-pointer",
     cursor: "cursor-pointer"
   }
 

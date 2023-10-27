@@ -47,6 +47,8 @@ const Signin = () => {
         const userDetails = {
           token: response.data.token,
           id: response.data.id,
+          userName: response.data.userName,
+          email: response.data.email,
         };
 
         localStorage.setItem('user', JSON.stringify(userDetails));

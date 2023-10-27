@@ -12,10 +12,10 @@ const DropImages = ({
   handleDrop, handleDragLeave
 }) => {
   const style = {
-    input: "",
+    input: "cursor-pointer",
     list: "text-[12px] font-[500] text-[#252525a6]",
-    inputCon: "border-[1px] border-[#252525a6] py-2 px-4 rounded-[5px] flex gap-4",
-    customLabel: "text-[13px] font-[600] text-[#252525a6]"
+    inputCon: "border-[1px] border-[#252525a6] py-2 cursor-pointer px-4 rounded-[5px] flex gap-4",
+    customLabel: "text-[13px] font-[600] text-[#252525a6]",
   };
 
   const customStyles = {
@@ -76,7 +76,7 @@ const DropImages = ({
               </div>
             ) : (
               <div>
-                <div className="px-6 py-4 text-center mt-2 md:w-[42%] m-auto">
+                <div className="px-6 py-4 text-center mt-2 md:w-[45%] m-auto">
                   <img src={Upload} className="m-auto my-2 bg-[#f1019140] rounded-[50%] p-4" alt="upload" />
                   <p className="text-[25px] font-[400] text-[#f10191d9]">Drag and drop images here</p>
                   <p className="text-[20px] font-[400] mb-2 text-[#252525a6]">Or</p>
