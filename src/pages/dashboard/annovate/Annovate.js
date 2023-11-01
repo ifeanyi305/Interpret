@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Upload from './annovateProcess/Upload';
 import Assign from './annovateProcess/Assign';
 import Annotate from './annovateProcess/Annotate';
+import Sidebar from './annovateProcess/Sidebar';
 import { flash } from '../../../redux/flash/flash';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -94,12 +95,16 @@ const Annovate = () => {
         />
       case 1:
         return <Assign
-        imageFiles={imageFiles}
-        imagesPreview={imagesPreview}
-        setNumber={setNumber}
+          imageFiles={imageFiles}
+          imagesPreview={imagesPreview}
+          setNumber={setNumber}
         />
       case 2:
-        return <Annotate />  
+        return <Annotate
+          imageFiles={imageFiles}
+          imagesPreview={imagesPreview}
+          setNumber={setNumber}
+        />
       default:
         return <Upload />
     }
@@ -119,6 +124,13 @@ const Annovate = () => {
         pauseOnHover
         theme="colored"
       />
+      <div className="hidden">
+        <Sidebar
+          imageFiles={imageFiles}
+          imagesPreview={imagesPreview}
+          isLoading={isLoading}
+        />
+      </div>
       {currentState()}
     </div>
   );

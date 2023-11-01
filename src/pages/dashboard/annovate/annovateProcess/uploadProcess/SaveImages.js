@@ -22,7 +22,7 @@ const SaveImages = ({
   return (
     <div>
       <div className="flex justify-center">
-        <div className="w-full">
+        <div className="w-[100%]">
           <div className="flex justify-between items-center">
             <div className="flex items-start gap-2 mb-4">
               <img className="pt-[1%]" src={UploadIcon} alt='upload_icon' />
@@ -111,10 +111,10 @@ const SaveImages = ({
                   }
                 </div>
                 <hr className="mb-4" />
-                <div className="px-[7%] my-4">
-                  {imageFiles.length > 0 && (
+                <div className="px-[7%] my-4 max-h-[389px] scrollbar">
+                  {imageFiles?.length > 0 && (
                     <div className="flex gap-2 flex-wrap">
-                      {imageFiles.map((file, index) => (
+                      {imageFiles?.map((file, index) => (
                         <div key={index}>
                           <p className="hidden">{file.name}</p>
                           <img

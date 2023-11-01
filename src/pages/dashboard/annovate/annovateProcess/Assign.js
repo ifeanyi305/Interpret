@@ -20,11 +20,11 @@ const Assign = ({
           <p className="text-center py-2 text-[14px] font-[700] text-[#252525b3]">
             15% of your data to be labeled manually by you
           </p>
-          <div className="border-[1px] border-[#f10191d9] rounded-[5px] px-6 py-[4px]">
+          <div className="border-[1px] border-[#f10191d9] max-h-[227px] scrollbar rounded-[5px] px-6 py-[4px]">
             <div className="px-[7%] my-4">
-              {imageFiles.length > 0 && (
+              {imageFiles?.length > 0 && (
                 <div className="flex gap-2 flex-wrap">
-                  {imageFiles.map((file, index) => (
+                  {imageFiles?.map((file, index) => (
                     <div key={index}>
                       <p className="hidden">{file.name}</p>
                       <img
@@ -43,11 +43,11 @@ const Assign = ({
           <p className="text-center py-2 text-[14px] font-[700] text-[#252525b3]">
             85% of your data to be annotated by AI
           </p>
-          <div className="border-[1px] border-[#f10191d9] rounded-[5px] px-6 py-[4px]">
+          <div className="border-[1px] border-[#f10191d9] max-h-[227px] scrollbar rounded-[5px] px-6 py-[4px]">
             <div className="px-[7%] my-4">
-              {imageFiles.length > 0 && (
+              {imageFiles?.length > 0 && (
                 <div className="flex gap-2 flex-wrap">
-                  {imageFiles.map((file, index) => (
+                  {imageFiles?.map((file, index) => (
                     <div key={index}>
                       <p className="hidden">{file.name}</p>
                       <img

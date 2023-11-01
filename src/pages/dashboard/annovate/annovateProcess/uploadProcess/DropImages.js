@@ -57,7 +57,7 @@ const DropImages = ({
             </div>
             {imagesPreview.length > 0 ? (
               <div>
-                <div className="px-[7%] my-4">
+                <div className="px-[7%] my-4 max-h-[389px] scrollbar">
                   {imageFiles.length > 0 && (
                     <div className="flex gap-2 flex-wrap">
                       {imageFiles.map((file, index) => (
