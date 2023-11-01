@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Upload from './annovateProcess/Upload';
 import Assign from './annovateProcess/Assign';
 import Annotate from './annovateProcess/Annotate';
-import Sidebar from './annovateProcess/Sidebar';
+// import Sidebar from './annovateProcess/Sidebar';
 import { flash } from '../../../redux/flash/flash';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -124,13 +124,13 @@ const Annovate = () => {
         pauseOnHover
         theme="colored"
       />
-      <div className="hidden">
+      {/* <div className="hidden">
         <Sidebar
           imageFiles={imageFiles}
           imagesPreview={imagesPreview}
           isLoading={isLoading}
         />
-      </div>
+      </div> */}
       {currentState()}
     </div>
   );
