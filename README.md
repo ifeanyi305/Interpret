@@ -1,5 +1,5 @@
 ## Interpret
-Interpret is a powerful web application designed for annotating images with ease. It provides a user-friendly interface for adding annotations, comments, and marks to images, facilitating collaborative work and communication.
+Interpret is a powerful desktop web application designed for annotating images with ease. It provides a user-friendly interface for adding annotations, comments, and marks to images, facilitating collaborative work and communication.
 
 # Features
 - Image Annotation: Annotate images with various shapes, text, and markers.
