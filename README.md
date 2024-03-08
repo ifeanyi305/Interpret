@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+## Interpret
+Interpret is a powerful web application designed for annotating images with ease. It provides a user-friendly interface for adding annotations, comments, and marks to images, facilitating collaborative work and communication.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Features
+- Image Annotation: Annotate images with various shapes, text, and markers.
+- Collaboration: Invite others to collaborate and work on annotations together.
+- Version History: Keep track of annotation changes with version history.
+- Export: Export annotated images in various formats for sharing and integration.
+- Customization: Customize annotations with different colors, sizes, and styles.
 
-## Available Scripts
+# Technologies Used
+- Frontend: Built with React JS, providing a responsive and interactive user interface.
+- Styling: Utilizes Tailwind CSS for fast and customizable styling.
+- Backend: Powered by Node.js for efficient server-side processing.
+- Storage: Integrates with cloud storage solutions for image storage and retrieval.
+- Authentication: Implements secure authentication mechanisms for user accounts.
 
-In the project directory, you can run:
+# Installation
+To run Interpret locally, follow these steps:
 
-### `npm start`
+- Clone this repository to your local machine.
+- Navigate to the project directory.
+- Install dependencies using npm install.
+- Start the development server with npm start.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Usage
+- Sign up for an account or log in if you already have one.
+- Upload an image or select an existing one from your library.
+- Use the annotation tools to add shapes, text, or markers to the image.
+- Save your annotations and collaborate with others if needed.
+- Export the annotated image in your desired format.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Contributing
+Contributions are welcome! If you'd like to contribute to Interpret, please follow these guidelines:
 
-### `npm test`
+- Fork the repository.
+- Create a new branch (git checkout -b feature/improvement).
+- Make your changes.
+- Commit your changes (git commit -am 'Add new feature').
+- Push to the branch (git push origin feature/improvement).
+- Create a new Pull Request.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# License
+This project is licensed under the MIT License
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contact
+For any inquiries or support, please contact us at otijoseph305@gmail.com.
