@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const SIGN_IN = 'SIGN_IN';
-const SIGN_IN_URL = `https://annovate-backend-production.up.railway.app/api/auth/`;
+const SIGN_IN_URL = `http://43.205.196.7:9000/api/auth/`;
 const SIGN_OUT = 'SIGN_OUT';
 
 const initialState = {
@@ -19,7 +19,10 @@ const removeToken = () => {
   localStorage.removeItem('user');
 }
 
-export const getToken = () => JSON.parse(localStorage.getItem('user'))?.token;
+export const getToken = () => {
+  const userStr = localStorage.getItem('user');
+  return userStr ? JSON.parse(userStr).token : null;
+};
 
 export const signin = createAsyncThunk(
   SIGN_IN,

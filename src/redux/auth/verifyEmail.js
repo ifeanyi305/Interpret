@@ -13,7 +13,10 @@ const setEmail = (emailId) => {
   localStorage.setItem('email', JSON.stringify({ emailId }));
 }
 
-export const getEmail = () => JSON.parse(localStorage.getItem('email'))?.emailId;
+export const getEmail = () => {
+  const emailStr = localStorage.getItem('email');
+  return emailStr ? JSON.parse(emailStr).emailId : null;
+};
 
 export const verifyEmail = createAsyncThunk(
   VERIFY_EMAIL,
@@ -25,7 +28,7 @@ export const verifyEmail = createAsyncThunk(
         },
         body: JSON.stringify(data),
       };
-      const response = await axios.post('https://annovate-backend-production.up.railway.app/api/users/', data, config);
+      const response = await axios.post('http://43.205.196.7:9000/api/users/', data, config);
       const userEmail = {
         email: response.data.email,
         emailId: response.data._id,

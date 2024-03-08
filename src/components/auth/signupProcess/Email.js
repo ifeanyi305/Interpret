@@ -54,9 +54,14 @@ const Email = () => {
     }
 
     dispatch(verifyEmail(data)).then((res) => {
-      if (res.error) {
+      if (res?.error) {
         setLoading(false);
-        flash('error', res.payload.data.error);
+        let errorMessage = "An error occurred";
+        if (res?.error) {
+          errorMessage = res?.error.message;
+        }
+      
+        flash('error', errorMessage);
       } else {
         setLoading(false);
         flash('success', "email sent for verification");

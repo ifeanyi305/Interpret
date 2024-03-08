@@ -3,153 +3,105 @@ import "./styles/dashboard.css";
 import { getToken } from '../../components/auth/Signin';
 import { fetchProject } from '../../redux/project/userProject';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { flash } from '../../redux/flash/flash';
+import { deleteProject } from '../../redux/project/deleteProject';
+import 'react-toastify/dist/ReactToastify.css';
 import Thumbnail from "../../assets/dashboard/Bthumbnail.png";
 import Warning from "../../assets/dashboard/warning.png";
+import WarningIcon from "../../assets/dashboard/warningIcon.png";
 import Label from "../../assets/dashboard/label.png";
 import Trash from "../../assets/dashboard/trash.png";
-import Upload from "../../assets/dashboard/export.png";
-import greenElipses from "../../assets/dashboard/greenElipses.png";
-import redElipses from "../../assets/dashboard/redElipses.png";
-import reset from "../../assets/dashboard/reset.png";
-import user from "../../assets/dashboard/user.png";
-import logoutIcon from "../../assets/dashboard/logout.png";
-import upgrade from "../../assets/dashboard/upgrade.png";
-import settings from "../../assets/dashboard/settings.png";
-import { useNavigate } from 'react-router-dom';
-import { signout } from '../../redux/auth/signin';
 
-const Dashboard = ({ notifications, profile, closeModal, modalActive }) => {
+const Dashboard = () => {
   const { projects, loading } = useSelector((state) => state.userProject);
   const recentProjects = projects?.length > 0 ? projects?.slice().reverse() : [];
   const [deleteModal, setDeleteModal] = useState(false);
-
-  const handleDeleteModal = () => {
-    setDeleteModal(!deleteModal);
-  }
-
+  const [confirmDeleteModal, setConfirmDeleteModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const dispatch = useDispatch();
   const userDetails = getToken();
   const userId = userDetails?.id;
-  const userName = userDetails?.userName;
-  const userEmail = userDetails?.email;
+
+  const handleDeleteModal = (id, e) => {
+    e.stopPropagation();
+    setDeleteModal(true);
+    setSelectedProject(id)
+  }
+
+  const closeDeleteModal = () => {
+    setDeleteModal(!deleteModal);
+  }
+
+  const handleConfirmDelModal = () => {
+    setConfirmDeleteModal(!confirmDeleteModal)
+    setDeleteModal(false);
+  }
+
+  const deleteUserProject = () => {
+    if (selectedProject) {
+      dispatch(deleteProject(selectedProject._id)).then((res) => {
+        if (res.error) {
+          flash('error', res.error.message);
+        } else {
+          flash('success', `${selectedProject.projectName} project deleted`);
+        }
+      })
+      setSelectedProject(null);
+      setConfirmDeleteModal(false)
+      setDeleteModal(false);
+    }
+  }
 
   useEffect(() => {
     if (projects?.length === 0) {
       dispatch(fetchProject(userId));
     }
-  }, [dispatch, userId, projects]);
+  }, [dispatch, userId]);
 
   const navigate = useNavigate();
-  const handleLogout = () => {
-    dispatch(signout());
-    navigate('/auth/signin');
-    window.location.reload();
-  };
 
   const style = {
     projectObjects: "text-[10px] text-[#252525a6] font-[600]",
-    projectCon: "shadow w-full project border-[#0000004d] border-[0.3px] bg-white md:w-[49%] px-4 py-2 rounded-[8px]",
+    projectCon: "shadow cursor-pointer w-full project border-[#0000004d] border-[0.3px] bg-white md:w-[49%] px-4 py-2 rounded-[8px]",
     flex: "flex items-center gap-2",
     list: "flex items-center gap-4 rounded-[9px] option py-2 cursor-pointer",
     options: "text-[15px] font-[500] text-[#252525e6]",
   }
   return (
     <div className="project_container px-[8%] pb-[5%]">
-      {
-        modalActive && (
-          <button onClick={closeModal} className="fixed w-screen closeModal_button h-screen top-0 bottom-0">&apos;</button>
-        )
-      }
-      {
-        notifications ? (
-          <div className="border-[#0000004d] user_notification fixed bg-[#fff] rounded-[9px] border-[0.3px] right-0 mt-[5%] mr-[2%] w-[65%] md:w-[30%]">
-            <div>
-              <div className="px-4 py-6">
-                <div className="flex justify-between items-start gap-2">
-                  <div className="flex items-start gap-2">
-                    <img src={greenElipses} className="mt-[7px]" alt="elipses" />
-                    <img src={Upload} alt="upload" />
-                    <div>
-                      <p className="text-[15px] font-[500] text-[#000]">File Uploaded</p>
-                      <p className="text-[14px] font-[400] text-[#7F7F7F]">Your file has been uploaded successfully</p>
-                    </div>
-                  </div>
-                  <p className="text-[14px] font-[400] text-[#7F7F7F]">1 day</p>
-                </div>
-                <hr className="my-6" />
-                <div className="flex justify-between items-start gap-2">
-                  <div className="flex items-start gap-2">
-                    <img src={redElipses} className="mt-[7px]" alt="elipses" />
-                    <img src={reset} alt="upload" />
-                    <div>
-                      <p className="text-[15px] font-[500] text-[#000]">Password Reset</p>
-                      <p className="text-[14px] font-[400] text-[#7F7F7F]">Your password has been restored successfully</p>
-                    </div>
-                  </div>
-                  <p className="text-[14px] font-[400] text-[#7F7F7F]">4 days</p>
-                </div>
-              </div>
-              <div className="bg-[#373564] border-[#0000004d] border-[0.3px] w-full py-2 text-center text-[15px] text-[#fff] font-[500]">
-                <button type="button">View all</button>
-              </div>
-            </div>
-          </div>
-        ) : (<></>)
-      }
-      {
-        profile ? (
-          <div className="border-[#0000004d] user_profile fixed bg-[#fff] rounded-[9px] border-[0.3px] right-0 mt-[5%] mr-[2%] p-4">
-            <div className="flex justify-between items-center gap-2">
-              <img src={user} alt="user" />
-              <div>
-                <p className="text-[15px] user_name font-[500] text-[#252525e6]">{userName}</p>
-                <p className="text-[13px] font-[500] text-[#999999]">{userEmail}</p>
-              </div>
-            </div>
-            <hr className="my-2" />
-            <ul>
-              <li className={style.list}>
-                <img src={logoutIcon} alt="logout" />
-                <p className={style.options}>Dashboard</p>
-              </li>
-              <li className={style.list}>
-                <img src={settings} alt='settings' />
-                <p className={style.options}>Profile Setting</p>
-              </li>
-              <li className={style.list}>
-                <img src={upgrade} alt="upgrade" />
-                <p className={style.options}>Upgrade Plan</p>
-              </li>
-              <li className={style.list} onClick={handleLogout}>
-                <img src={logoutIcon} alt="logout" />
-                <button
-                  type="button"
-                  className={style.options}
-                >Log out</button>
-              </li>
-            </ul>
-          </div>
-        ) : (<></>)
-      }
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       {
         deleteModal ? (
-          <div className="w-full flex delete_project_modal justify-center items-center h-full fixed">
-            <div className="bg-[#fff] md:right-[50%] py-[2%] px-[1%] absolute w-fit m-auto rounded-[20px]">
+          <div className="w-full flex delete_project_modal delete_modal justify-center items-center h-full fixed">
+            <div className="bg-[#fff] flex justify-center items-center md:right-[58%] py-[2%] px-[1%] absolute md:w-[37%] md:h-[37%] m-auto rounded-[20px]">
               <div className="w-[70%] m-auto">
-                <img className="m-auto my-4" src={Warning} alt="warning" />
+                <img className="m-auto mb-4" src={Warning} alt="warning" />
                 <p className="text-center mt-4 mb-6 font-[500] text-[18px] text-[#252525b3]">
                   Are you sure you want to delete this project?
                 </p>
-                <div className="flex my-4 justify-center items-center gap-4">
+                <div className="flex mt-6 justify-center items-center gap-4">
                   <button
                     type="button"
-                    onClick={handleDeleteModal}
-                    className="border-[1px] border-[#252525b3] text-[#252525b3] text-[14px] font-[600] bg-[#fff] px-4 py-2 rounded-[100px]"
+                    onClick={closeDeleteModal}
+                    className="text-[#fff] verify_email bg-[#f10191d9] text-[14px] font-[600] px-4 py-[5px] rounded-[100px]"
                   >Cancel</button>
                   <button
                     type="button"
-                    className="text-[#fff] verify_email bg-[#f10191d9] text-[14px] font-[600] px-4 py-2 rounded-[100px]"
+                    onClick={handleConfirmDelModal}
+                    className="border-[1px] border-[#252525b3] text-[#252525b3] text-[14px] font-[600] bg-[#fff] px-4 py-[5px] rounded-[100px]"
                   >Delete</button>
                 </div>
               </div>
@@ -157,7 +109,37 @@ const Dashboard = ({ notifications, profile, closeModal, modalActive }) => {
           </div>
         ) : (<></>)
       }
-      <div className={deleteModal ? "blur_con" : ""}>
+      {
+        confirmDeleteModal ? (
+          <div className="w-full flex delete_project_modal delete_modal justify-center items-center h-full fixed">
+            <div className="bg-[#fff] border-[1px] border-[#252525b3] delete_modal_con flex justify-center items-center md:right-[60%] py-[1%] px-[1%] absolute w-[30%] m-auto rounded-[20px]">
+              <div className="m-auto">
+                <p className="text-center font-[500] text-[12px] text-[#252525b3]">
+                  AI is currently annotating your
+                  dataset in the background.
+                  Once you confirm, you&apos;ll lose
+                  all your manual and ongoing automated annotations.
+                </p>
+                <img className="m-auto my-2" src={WarningIcon} alt="warning" />
+                <p className="text-[#FF0000F7] font-[500] text-[13px] text-center">This process can’t be undone.</p>
+                <div className="flex mt-2 justify-center items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={handleConfirmDelModal}
+                    className="text-[#fff] verify_email bg-[#f10191d9] text-[14px] font-[600] px-4 py-[5px] rounded-[100px]"
+                  >Cancel</button>
+                  <button
+                    type="button"
+                    onClick={deleteUserProject}
+                    className="border-[1px] border-[#252525b3] text-[#252525b3] text-[14px] font-[600] bg-[#fff] px-4 py-[5px] rounded-[100px]"
+                  >Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (<></>)
+      }
+      <div className="blur_con">
         <div className="px-[7%] pt-[12%]">
           <div className="bg-[#fff] shadow w-full rounded-[8px] border-[0.3px] border-[#0000004d]">
             <div className="px-6 py-4">
@@ -190,34 +172,32 @@ const Dashboard = ({ notifications, profile, closeModal, modalActive }) => {
                 <>loading projects...</>
               ) : projects && projects.length > 0 ? (
                 recentProjects.map((project, index) => (
-                  <div key={index} className={style.projectCon}>
-                    <Link to={`/annovate/${project._id}`}>
-                      <div className="flex justify-between items-start gap-2">
-                        <div className="flex items-center gap-4 mb-2">
-                          <img src={Thumbnail} alt="thumbnail" />
-                          <div>
-                            <p className="text-[15px] text-[#252525a6] font-[600]">{project.projectName}</p>
-                            <p className="text-[10px] text-[#252525a6] font-[400]">{project.projectType}</p>
-                          </div>
+                  <div onClick={() => navigate(`/annovate/${project._id}`)} key={index} className={style.projectCon}>
+                    <div className="flex justify-between items-start gap-2">
+                      <div className="flex items-center gap-4 mb-2">
+                        <img src={Thumbnail} alt="thumbnail" />
+                        <div>
+                          <p className="text-[15px] text-[#252525a6] font-[600]">{project.projectName}</p>
+                          <p className="text-[10px] text-[#252525a6] font-[400]">{project.projectType}</p>
                         </div>
-                        <button onClick={handleDeleteModal} className="mt-[4px]">
-                          <img src={Trash} className="non-clickable-button" alt="trash" />
-                        </button>
                       </div>
-                      <div className="flex justify-between items-center gap-2">
-                        <div className="flex items-center gap-4">
-                          <div className={style.flex}>
-                            <img src={Label} alt="label" />
-                            <p className={style.projectObjects}>{project.objectName}</p>
-                          </div>
-                          <div className={style.flex}>
-                            <img src={Thumbnail} className="w-[12px]" alt="thumbnail" />
-                            <p className={style.projectObjects}>200 images</p>
-                          </div>
+                      <button onClick={(e) => handleDeleteModal(project, e)} className="mt-[4px] trash_btn">
+                        <img src={Trash} className="trash_icon" alt="trash" />
+                      </button>
+                    </div>
+                    <div className="flex justify-between items-center gap-2">
+                      <div className="flex items-center gap-4">
+                        <div className={style.flex}>
+                          <img src={Label} alt="label" />
+                          <p className={style.projectObjects}>{project.objectName}</p>
                         </div>
-                        <p className={style.projectObjects}>Edit 2 hours ago</p>
+                        <div className={style.flex}>
+                          <img src={Thumbnail} className="w-[12px]" alt="thumbnail" />
+                          <p className={style.projectObjects}>200 images</p>
+                        </div>
                       </div>
-                    </Link>
+                      <p className={style.projectObjects}>Edit 2 hours ago</p>
+                    </div>
                   </div>
                 ))
               ) : (<p className="text-[#000]">No Projects</p>)

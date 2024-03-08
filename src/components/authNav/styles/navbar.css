@@ -1,5 +1,5 @@
 .navbar {
-  z-index: 1000;
+  z-index: 500;
 }
 
 .project_name {
@@ -11,5 +11,5 @@
 }
 
 .nav_lists li {
-  padding: 10px 33px;
+  padding: 7px 22px;
 }

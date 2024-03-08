@@ -1,5 +1,10 @@
 .shadow {
   box-shadow: rgba(0, 0, 0, 0.06);
+  z-index: 40;
+}
+
+.trash_btn {
+  z-index: 50;
 }
 
 .project_container {
@@ -7,13 +12,12 @@
   width: 100%;
 }
 
-.blur_con {
-  z-index: 0;
-  filter: blur(10px);
-}
-
 .delete_project_modal {
   z-index: 10000;
+}
+
+.delete_modal_con {
+  box-shadow: 0px 2px 4px 1px #00000040;
 }
 
 .non-clickable-button {
@@ -21,12 +25,13 @@
   cursor: default;
 }
 
-.user_notification, .user_profile {
-  z-index: 50;
+.user_notification, .user_profile, .trash_icon {
+  z-index: 150000;
 }
 
 .closeModal_button {
   cursor: auto;
+  z-index: 510;
 }
 
 .project:hover {

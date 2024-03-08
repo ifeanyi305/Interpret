@@ -5,7 +5,9 @@ import SaveImages from "./uploadProcess/SaveImages";
 const Upload = ({
   imageFiles, imagesPreview, isDraggingOver, isLoading,
   handleFileChange, handleDragEnter, handleDragOver,
-  handleDrop, handleDragLeave, setPage, page, setNumber
+  handleDrop, handleDragLeave, setPage, page, setNumber, setSelectedItem,
+  uploadingImg, setUploadingImg, uploadingImgModal, setUploadingImgModal,
+  imageURLs, saveImages, saveImgStyle
 }) => {
 
   const currentPage = () => {
@@ -22,13 +24,23 @@ const Upload = ({
         />
       case 1:
         return <SaveImages
+          setPage={setPage}
           setNumber={setNumber}
           imageFiles={imageFiles}
-          imagesPreview={imagesPreview} isDraggingOver={isDraggingOver}
+          imagesPreview={imagesPreview}
+          uploadingImg={uploadingImg}
+          setUploadingImg={setUploadingImg}
+          uploadingImgModal={uploadingImgModal}
+          setUploadingImgModal={setUploadingImgModal}
+          imageURLs={imageURLs}
+          saveImages={saveImages}
+          saveImgStyle={saveImgStyle}
+          isDraggingOver={isDraggingOver}
           isLoading={isLoading}
           handleFileChange={handleFileChange} handleDragEnter={handleDragEnter}
           handleDragOver={handleDragOver}
           handleDrop={handleDrop} handleDragLeave={handleDragLeave}
+          setSelectedItem={setSelectedItem}
         />
       default:
         <DropImages />

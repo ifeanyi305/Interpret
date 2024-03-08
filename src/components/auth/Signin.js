@@ -14,7 +14,10 @@ const setToken = (token) => {
   localStorage.setItem('user', JSON.stringify({ token }));
 }
 
-export const getToken = () => JSON.parse(localStorage.getItem('user'))?.token;
+export const getToken = () => {
+  const userStr = localStorage.getItem('user');
+  return userStr ? JSON.parse(userStr).token : null;
+};
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -40,7 +43,7 @@ const Signin = () => {
     };
     setLoading(true);
 
-    axios.post('https://annovate-backend-production.up.railway.app/api/auth/', data)
+    axios.post('http://43.205.196.7:9000/api/auth/', data)
       .then((response) => {
         setResponse(response.data);
 
@@ -56,7 +59,12 @@ const Signin = () => {
         flash('success', "Login successful")
       })
       .catch((error) => {
-        flash('error', error.response.data.msg);
+        let errorMessage = "An error occurred";
+        if (error.response && error.response.data && error.response.data.message) {
+          errorMessage = error.response.data.message;
+        }
+      
+        flash('error', errorMessage);
       })
       .finally(() => {
         setLoading(false);
@@ -124,8 +132,9 @@ const Signin = () => {
                 <div className={style.con} style={emailInput.containerStyle}>
                   <BiSolidUser className="text-[#F10191] text-[30px]" />
                   <input
-                    type="text"
+                    type="email"
                     placeholder="E-mail"
+                    required
                     className={style.input}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -149,7 +158,7 @@ const Signin = () => {
                   <button
                     type="submit"
                     onClick={handleButtonClick}
-                    className={`py-[7px] px-6 text[16px] font-[700] text-[#ffffff] rounded-[20px] ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+                    className={`py-[7px] px-6 text[16px] verify_email font-[700] text-[#ffffff] rounded-[20px] ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
                   >{loading ? (<>loading...</>) : (<>Login</>)}</button>
                   <p className="text-[#CACACA] underline">Forgot password?</p>
                 </div>

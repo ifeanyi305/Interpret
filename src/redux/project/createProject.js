@@ -1,8 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getToken } from '../auth/signin';
 import axios from 'axios';
 
 const CREATE_PROJECT = "CREATE_PROJECT";
-
+const userDetails = getToken();
+const token = userDetails?.token;
 const initialState = {
   project: [],
   loading: false,
@@ -15,11 +17,12 @@ export const createProject = createAsyncThunk(
     try {
       const config = {
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       };
-      const response = await axios.post('https://annovate-backend-production.up.railway.app/api/projects/', data, config);
+      const response = await axios.post('http://43.205.196.7:9000/api/projects/', data, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response);

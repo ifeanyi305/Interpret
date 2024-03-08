@@ -66,7 +66,7 @@ const CreateProject = () => {
   }
 
   const style = {
-    label: "block text-[#545454] text-[12px] font-[700]",
+    label: "block text-[#252525A6] text-[14px] font-[700]",
     input: "w-full select_input bg-[#fff] py-2 px-4 mt-[7px] text-[#252525a8] rounded-[5px] border-[1px] border-[#252525a8]",
     noFocus: "w-full focus:outline-none bg-[#fff]",
   }
@@ -85,7 +85,7 @@ const CreateProject = () => {
         theme="colored"
       />
       <div className="flex justify-center items-center h-full">
-        <div className="bg-[#fff] w-[70%] border-[0.3px] border-[#0000004d] rounded-[13px] py-4 create_project_con">
+        <div className="bg-[#fff] w-[63%] border-[0.3px] border-[#0000004d] rounded-[13px] py-4 create_project_con">
           <p className="text-center text-[20px] py-6 text-[#545454] font-[600]">Let's create a new project</p>
           <div className="m-auto md:w-[70%]">
             <form onSubmit={submitProject}>

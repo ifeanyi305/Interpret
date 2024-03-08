@@ -52,7 +52,12 @@ const Password = () => {
 
     dispatch(signUp({ id: id, user })).then((res) => {
       if (res.error) {
-        flash('error', res?.payload?.data?.error);
+        let errorMessage = "An error occurred";
+        if (res?.error) {
+          errorMessage = res?.error.message;
+        }
+      
+        flash('error', errorMessage);
         setLoading(false);
       } else {
         flash('success', 'Account logged in successfully');
@@ -141,7 +146,7 @@ const Password = () => {
             <button
               type="submit"
               onClick={handleButtonClick}
-              className={`py-2 px-6 mt-2 text-[#fff] mt-2 rounded-[70px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
+              className={`py-2 px-6 mt-2 verify_email text-[#fff] mt-2 rounded-[70px] w-full ${buttonClicked ? 'bg-[#f1019199]' : 'bg-[#f10191d9]'}`}
             >{loading ? (<>loading...</>) : (<>Create Account</>)}</button>
           </form>
         </div>

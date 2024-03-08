@@ -46,6 +46,10 @@ function App() {
   const [notifications, setNotifications] = useState(false);
   const [profile, setProfile] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+  const [imageFiles, setImageFiles] = useState([]);
+  const [imagesPreview, setImagesPreview] = useState([]);
+  const [number, setNumber] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(0);
 
   const handleNotification = () => {
     setNotifications(!notifications);
@@ -82,15 +86,29 @@ function App() {
         <Route element={<UserRoute
           handleNotification={handleNotification}
           handleProfile={handleProfile}
+          profile={profile}
+          modalActive={modalActive}
+          closeModal={closeModal}
+          notifications={notifications}
+          imageFiles={imageFiles}
+          imagesPreview={imagesPreview}
+          number={number}
+          setNumber={setNumber}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
         />}>
-          <Route path="/" element={<Dashboard
-            profile={profile}
-            modalActive={modalActive}
-            notifications={notifications}
-            closeModal={closeModal} />}
-          />
+          <Route path="/" element={<Dashboard/>} />
           <Route path="/dashboard/create_project" element={<CreateProject />} />
-          <Route path="/annovate/:projectId" element={<Annovate />} />
+          <Route path="/annovate/:projectId" element={<Annovate
+            imageFiles={imageFiles}
+            imagesPreview={imagesPreview}
+            setImageFiles={setImageFiles}
+            setImagesPreview={setImagesPreview}
+            number={number}
+            setNumber={setNumber}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+          />} />
         </Route>
       </Routes>
     </div>

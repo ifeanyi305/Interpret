@@ -1,8 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getToken } from '../auth/signin';
 
 const USER_PROJECT = "USER_PROJECT";
-
+const userDetails = getToken();
+const token = userDetails?.token;
 const initialState = {
   projects: [],
   loading: false,
@@ -13,11 +15,16 @@ export const fetchProject = createAsyncThunk(
   USER_PROJECT,
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`https://annovate-backend-production.up.railway.app/api/projects/user/${userId}`);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      }
+      const response = await axios.get(`http://43.205.196.7:9000/api/projects/user/${userId}`, config);
       if (response.status === 200) {
         return response.data;
       }
-      console.log("response", response);
       return response.error
     } catch (error) {
       return rejectWithValue(error.response);

@@ -18,7 +18,7 @@ export const signUp = createAsyncThunk(
           'Content-Type': 'application/json',
         }
       };
-      const response = await axios.put(`https://annovate-backend-production.up.railway.app/api/users/${id}`, user, config);
+      const response = await axios.put(`http://43.205.196.7:9000/api/users/${id}`, user, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response);

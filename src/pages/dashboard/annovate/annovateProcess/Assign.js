@@ -1,8 +1,25 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateProgress } from "../../../../redux/annotateProgress/progress";
+import { createProject } from '../../../../redux/project/createProject';
 
 const Assign = ({
-  imageFiles, imagesPreview, setNumber
+  imageFiles, imagesPreview, setNumber,
+  setSelectedItem, manualImages, autoImages, imageURLs
 }) => {
+  const { projectId } = useParams();
+  const dispatch = useDispatch();
+  const handleScreenChange = () => {
+    setNumber(2);
+    setSelectedItem(2);
+    const data = {
+      projectId,
+      newKey: "splitDatasets",
+    }
+    dispatch(updateProgress(data));
+  }
+
   return (
     <div>
       <div className="w-full px-[9%] pt-[2%] pb-[4%] rounded-[100px] bg-[#fff] border-[1px] border-[#f10191d9]">
@@ -15,57 +32,55 @@ const Assign = ({
       <p className="text-[16px] mt-[-20px] font-[700] text-center w-fit m-auto rounded-[200px] text-[#fff] bg-[#f10191d9] px-4 py-2">
         Here we have assigned two proportions of your data
       </p>
-      <div className="flex justify-between items-center gap-4 mt-6">
-        <div>
+      <div className="flex items-center gap-4 mt-6">
+        <div className="w-full">
           <p className="text-center py-2 text-[14px] font-[700] text-[#252525b3]">
             15% of your data to be labeled manually by you
           </p>
-          <div className="border-[1px] border-[#f10191d9] rounded-[5px] px-6 py-[4px]">
+          <div className="border-[1px] bg-white assign_con w-full border-[#f10191d9] overflow-y-auto h[80%] rounded-[5px] px-6 py-[4px]">
             <div className="px-[7%] my-4">
-              {imageFiles.length > 0 && (
-                <div className="flex gap-2 flex-wrap">
-                  {imageFiles.map((file, index) => (
-                    <div key={index}>
-                      <p className="hidden">{file.name}</p>
+              <div className="flex gap-2 flex-wrap">
+                {manualImages?.map((imageUrl, index) => (
+                  <div key={index}>
+                    <div className="w-[54px] h-[36px] border-[1px] border-[#000000]">
                       <img
-                        src={imagesPreview[index]}
-                        alt={`Selected Preview ${index}`}
-                        className="w-[54px] h-[34px]"
+                        src={imageUrl}
+                        alt={`blobImages ${index + 1}`}
+                        className="w-full h-full"
                       />
                     </div>
-                  ))}
-                </div>
-              )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        <div>
+        <div className="w-full">
           <p className="text-center py-2 text-[14px] font-[700] text-[#252525b3]">
             85% of your data to be annotated by AI
           </p>
-          <div className="border-[1px] border-[#f10191d9] rounded-[5px] px-6 py-[4px]">
+          <div className="border-[1px] bg-white w-full assign_con border-[#f10191d9] overflow-y-auto h[80%] rounded-[5px] px-6 py-[4px]">
             <div className="px-[7%] my-4">
-              {imageFiles.length > 0 && (
-                <div className="flex gap-2 flex-wrap">
-                  {imageFiles.map((file, index) => (
-                    <div key={index}>
-                      <p className="hidden">{file.name}</p>
+              <div className="flex gap-2 flex-wrap">
+                {autoImages?.map((imageUrl, index) => (
+                  <div key={index}>
+                    <div className="w-[54px] h-[36px] border-[1px] border-[#000000]">
                       <img
-                        src={imagesPreview[index]}
-                        alt={`Selected Preview ${index}`}
-                        className="w-[54px] h-[34px]"
+                        src={imageUrl}
+                        alt={`blobImages ${index + 1}`}
+                        className="w-full h-full"
                       />
                     </div>
-                  ))}
-                </div>
-              )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="flex justify-end my-4">
         <button
-          onClick={() => setNumber(2)}
+          onClick={() => handleScreenChange()}
           className="rounded-[204px] text-[#fff] font-[600] verify_email text-[14px] bg-[#f10191d9] px-6 py-2"
           type="button"
         >Continue</button>
