@@ -134,8 +134,6 @@ const Annovate = ({
     try {
       setUploadingImg(true);
 
-      const startTime = performance.now();
-
       const uploadTime = await uploadFiles(imageFiles);
 
       setAnimationDuration(uploadTime);

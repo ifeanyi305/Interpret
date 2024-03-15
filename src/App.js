@@ -55,7 +55,7 @@ function App() {
   useEffect(() => {
     const handleOnlineStatus = () => {
       setIsOnline(navigator.onLine);
-      if (!navigator.onLine) {
+      if (!isOnline) {
         alert("You are currently offline. Please check your internet connection");
       }
     };
@@ -67,7 +67,7 @@ function App() {
       window.removeEventListener('online', handleOnlineStatus);
       window.removeEventListener('offline', handleOnlineStatus);
     };
-  }, []);
+  }, [isOnline]);
 
   const handleNotification = () => {
     setNotifications(!notifications);

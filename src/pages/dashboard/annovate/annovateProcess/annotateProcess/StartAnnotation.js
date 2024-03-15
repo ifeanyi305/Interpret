@@ -31,7 +31,6 @@ import undoIcon from "../../../../../assets/annovate/undo.png";
 import roundStarIcon from "../../../../../assets/annovate/roundStar.png";
 import greenCheck from "../../../../../assets/annovate/greenCheck.png";
 import secGreenCheck from "../../../../../assets/annovate/greenCheck2.png";
-import { ConsoleHttpPipelineLogger } from '@azure/ms-rest-js/es/lib/httpPipelineLogger';
 
 const StartAnnotation = ({ imageFiles, imagesPreview,
   setAnnotPage, setShowLabel, manualImages, setNumber,
@@ -47,7 +46,7 @@ const StartAnnotation = ({ imageFiles, imagesPreview,
   const [selectedTools, setSelectedTools] = useState(0);
   const [annotation, setAnnotation] = useState({});
   const [selectedImage, setSelectedImage] = useState(manualImages[0]);
-  const [selectedImageFile, setSelectedImageFile] = useState(imageFiles[0]);
+  // const [selectedImageFile, setSelectedImageFile] = useState(imageFiles[0]);
   const [isDrawingEnabled, setIsDrawingEnabled] = useState(false);
   const [isDraggable, setIsDraggable] = useState(true);
   const [imgSize, setImgSize] = useState(35);
@@ -302,7 +301,7 @@ const StartAnnotation = ({ imageFiles, imagesPreview,
       redoStackRef.current.push([...annotations]);
       setAnnotations(lastAnnotations);
     }
-  }, [annotations]);
+  }, [annotations, setAnnotations]);
 
   const handleRedo = useCallback(() => {
     if (redoStackRef.current.length > 0) {
@@ -310,7 +309,7 @@ const StartAnnotation = ({ imageFiles, imagesPreview,
       undoStackRef.current.push([...annotations]);
       setAnnotations(nextAnnotations);
     }
-  }, [annotations]);
+  }, [annotations, setAnnotations]);
 
   const applyAnnotationsToNewImage = (previousAnnotations, lastAnnotatedImage, projectId) => {
     return previousAnnotations
@@ -544,7 +543,7 @@ const StartAnnotation = ({ imageFiles, imagesPreview,
           <button type='button' onClick={() => setAnnotPage(0)}>
             <AiOutlineArrowLeft className={style.icons} />
           </button>
-          <p className="text-[12px] font-[600] text-[#fff]">{selectedImageFile?.name || 'No image uploaded'}</p>
+          {/* <p className="text-[12px] font-[600] text-[#fff]">{selectedImageFile?.name || 'No image uploaded'}</p> */}
         </div>
         <div className="bg-[#1F2937] flex items-center gap-4 rounded-[8px] px-4 py-[4px]">
           <button type='button' onClick={handleLeftButtonClick}>

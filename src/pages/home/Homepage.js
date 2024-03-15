@@ -162,6 +162,7 @@ const Homepage = () => {
                 <div className="bg-[#201E50] rounded-[50%] p-4">
                   <img
                     loading="lazy"
+                    alt="instruction icon"
                     src={ instruction.icon }
                     className="aspect-square object-contain object-center w-[54px] overflow-hidden max-w-full"
                   />

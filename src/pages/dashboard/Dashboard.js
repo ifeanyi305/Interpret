@@ -58,7 +58,7 @@ const Dashboard = () => {
     if (projects?.length === 0) {
       dispatch(fetchProject(userId));
     }
-  }, [dispatch, userId]);
+  }, [dispatch, userId, projects?.length]);
 
   const navigate = useNavigate();
 

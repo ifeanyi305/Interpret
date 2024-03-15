@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { updateProgress } from "../../../../redux/annotateProgress/progress";
+import React, { useState } from 'react';
+// import { useParams } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { updateProgress } from "../../../../redux/annotateProgress/progress";
 import aiIcon from "../../../../assets/annovate/ai_icon.png";
 import datasetIcon from "../../../../assets/annovate/datasetIcon.png";
 import "./style.css";
+import { flash } from '../../../../redux/flash/flash';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const ExportAnnot = ({ annotations }) => {
-  const { projectId } = useParams();
-  const dispatch = useDispatch();
-  const [datasets, setDatasets] = useState([]);
+  // const { projectId } = useParams();
+  // const dispatch = useDispatch();
+  // const [datasets, setDatasets] = useState([]);
   const [exportModal, setExportModal] = useState(false);
   const [showFormat, setShowFormat] = useState(false);
   const [selectedText, setSelectedText] = useState('COCO');
@@ -45,11 +48,11 @@ const ExportAnnot = ({ annotations }) => {
     );
   };
 
-  useEffect(() => {
-    const filteredDatasets = annotations?.filter(annotation => annotation?.projectId.includes(projectId));
+  // useEffect(() => {
+  //   const filteredDatasets = annotations?.filter(annotation => annotation?.projectId.includes(projectId));
 
-    setDatasets(filteredDatasets);
-  }, [annotations, projectId]);
+  //   setDatasets(filteredDatasets);
+  // }, [annotations, projectId]);
 
   const exportAnnot = [
     {
@@ -64,16 +67,33 @@ const ExportAnnot = ({ annotations }) => {
     }
   ];
 
-  const handleDownload = () => {
-    const data = {
-      projectId,
-      newKey: "export",
-    }
-    dispatch(updateProgress(data));
-  };
+  // const handleDownload = () => {
+  //   const data = {
+  //     projectId,
+  //     newKey: "export",
+  //   }
+  //   dispatch(updateProgress(data));
+  // };
+
+  const exportDatasets = () => {
+    flash("warning", "Export feature coming soon!!!")
+    setExportModal(!exportModal);
+  }
 
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       {exportModal ? (
         <div className="flex exportModal z-50 justify-center items-center h-full fixed mt-[-6%] w-full ml-[-26%]">
           <div className="bg-[#FFFFFF] rounded-[10px] py-4 px-6 w-[478px] h-[250px]">
@@ -116,7 +136,7 @@ const ExportAnnot = ({ annotations }) => {
             <p className="text-[#252525A6] my-2 text-[15px] font-[400]">TXT annotations and YAML config used with {selectedText}</p>
             <div className="flex items-center justify-center gap-4 my-6">
               <button onClick={() => toggleExportModal()} className="rounded-[20px] border-[1px] border-[#252525A6] px-6 py-[5px] text-[15px] text-[#252525A6] font-[500]">Cancel</button>
-              <button className="rounded-[20px] bg-[#F10191D9] px-6 py-[6px] text-[15px] font-[500] text-[#FFFFFF]">Continue</button>
+              <button onClick={() => exportDatasets()} className="rounded-[20px] bg-[#F10191D9] px-6 py-[6px] text-[15px] font-[500] text-[#FFFFFF]">Continue</button>
             </div>
           </div>
         </div>

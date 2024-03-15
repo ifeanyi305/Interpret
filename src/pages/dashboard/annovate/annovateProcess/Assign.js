@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateProgress } from "../../../../redux/annotateProgress/progress";
-import { createProject } from '../../../../redux/project/createProject';
 
 const Assign = ({
   imageFiles, imagesPreview, setNumber,
@@ -11,11 +10,11 @@ const Assign = ({
   const { projectId } = useParams();
   const dispatch = useDispatch();
 
-  const filteredImageNames = imageURLs.map(img_url => {
-    const urlParts = img_url.split('/');
-    const imageName = urlParts[urlParts.length - 1];
-    return imageName.slice(0, imageName.indexOf('.'));
-  });
+  // const filteredImageNames = imageURLs.map(img_url => {
+  //   const urlParts = img_url.split('/');
+  //   const imageName = urlParts[urlParts.length - 1];
+  //   return imageName.slice(0, imageName.indexOf('.'));
+  // });
   
   // console.log(filteredImageNames);
 
