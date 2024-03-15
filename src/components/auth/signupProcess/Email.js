@@ -52,16 +52,17 @@ const Email = () => {
       flash('warning', 'Invalid email address');
       return;
     }
+    if (!navigator.onLine) {
+      flash("warning", "You are currently offline. Please check your internet connection");
+      setEmail("");
+      setLoading(false);
+      return;
+    }
 
     dispatch(verifyEmail(data)).then((res) => {
       if (res?.error) {
         setLoading(false);
-        let errorMessage = "An error occurred";
-        if (res?.error) {
-          errorMessage = res?.error.message;
-        }
-      
-        flash('error', errorMessage);
+        flash('error', res.payload?.data.error);
       } else {
         setLoading(false);
         flash('success', "email sent for verification");

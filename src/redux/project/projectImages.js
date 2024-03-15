@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getToken } from '../auth/signin';
 import axios from 'axios';
 
-const ADD_PROJECT_IMAGE = "ADD_PROJECT_IMAGE";
+const ADD_PROJECT_IMAGES = "ADD_PROJECT_IMAGES";
 const userDetails = getToken();
 const token = userDetails?.token;
 
@@ -13,7 +13,7 @@ const initialState = {
 }
 
 export const createProjectImage = createAsyncThunk(
-  ADD_PROJECT_IMAGE,
+  ADD_PROJECT_IMAGES,
   async (imageObjects, { rejectWithValue }) => {
     try {
       const config = {
@@ -33,19 +33,19 @@ export const createProjectImage = createAsyncThunk(
 
 const projectImageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case `${ADD_PROJECT_IMAGE}/pending`:
+    case `${ADD_PROJECT_IMAGES}/pending`:
       return {
         ...state,
         loading: true,
         error: false
       }
-    case `${ADD_PROJECT_IMAGE}/fulfilled`:
+    case `${ADD_PROJECT_IMAGES}/fulfilled`:
       return {
         projectImage: action.payload,
         loading: false,
         error: false
       }
-    case `${ADD_PROJECT_IMAGE}/rejected`:
+    case `${ADD_PROJECT_IMAGES}/rejected`:
       return {
         ...state,
         loading: false,

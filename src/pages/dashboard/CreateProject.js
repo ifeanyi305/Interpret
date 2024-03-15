@@ -55,7 +55,7 @@ const CreateProject = () => {
         flash('error', res.error.message);
       } else {
         flash('success', 'project created');
-        navigate('/');
+        navigate(`/annovate/${res.payload._id}`);
       }
     })
     setProjectData({

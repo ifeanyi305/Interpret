@@ -42,6 +42,13 @@ const Signin = () => {
       password: password,
     };
     setLoading(true);
+    if (!navigator.onLine) {
+      flash("warning", "You are currently offline. Please check your internet connection");
+      setEmail("");
+      setPassword("");
+      setLoading(false);
+      return;
+    }
 
     axios.post('http://43.205.196.7:9000/api/auth/', data)
       .then((response) => {
@@ -59,12 +66,7 @@ const Signin = () => {
         flash('success', "Login successful")
       })
       .catch((error) => {
-        let errorMessage = "An error occurred";
-        if (error.response && error.response.data && error.response.data.message) {
-          errorMessage = error.response.data.message;
-        }
-      
-        flash('error', errorMessage);
+        flash('error', error.response?.data.msg);
       })
       .finally(() => {
         setLoading(false);

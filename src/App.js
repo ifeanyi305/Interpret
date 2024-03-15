@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Homepage from './pages/home/Homepage';
 import Signin from './components/auth/Signin';
@@ -50,6 +50,24 @@ function App() {
   const [imagesPreview, setImagesPreview] = useState([]);
   const [number, setNumber] = useState(0);
   const [selectedItem, setSelectedItem] = useState(0);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const handleOnlineStatus = () => {
+      setIsOnline(navigator.onLine);
+      if (!navigator.onLine) {
+        alert("You are currently offline. Please check your internet connection");
+      }
+    };
+
+    window.addEventListener('online', handleOnlineStatus);
+    window.addEventListener('offline', handleOnlineStatus);
+
+    return () => {
+      window.removeEventListener('online', handleOnlineStatus);
+      window.removeEventListener('offline', handleOnlineStatus);
+    };
+  }, []);
 
   const handleNotification = () => {
     setNotifications(!notifications);

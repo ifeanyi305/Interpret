@@ -10,6 +10,15 @@ const Assign = ({
 }) => {
   const { projectId } = useParams();
   const dispatch = useDispatch();
+
+  const filteredImageNames = imageURLs.map(img_url => {
+    const urlParts = img_url.split('/');
+    const imageName = urlParts[urlParts.length - 1];
+    return imageName.slice(0, imageName.indexOf('.'));
+  });
+  
+  // console.log(filteredImageNames);
+
   const handleScreenChange = () => {
     setNumber(2);
     setSelectedItem(2);

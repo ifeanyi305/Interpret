@@ -44,6 +44,13 @@ const Password = () => {
       flash('error', 'password do not match')
       return;
     }
+
+    if (!navigator.onLine) {
+      flash("warning", "You are currently offline. Please check your internet connection");
+      setLoading(false);
+      return;
+    }
+
     const user = {
       userName: userData.userName,
       password: userData.password,
@@ -52,12 +59,7 @@ const Password = () => {
 
     dispatch(signUp({ id: id, user })).then((res) => {
       if (res.error) {
-        let errorMessage = "An error occurred";
-        if (res?.error) {
-          errorMessage = res?.error.message;
-        }
-      
-        flash('error', errorMessage);
+        flash('error', res.payload?.data.error);
         setLoading(false);
       } else {
         flash('success', 'Account logged in successfully');
